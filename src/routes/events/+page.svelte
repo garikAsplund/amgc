@@ -31,8 +31,8 @@
     <div class="grid md:grid-cols-3 gap-8">
       {#each events as event}
         <div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
-          <div class="text-4xl mb-4">{event.icon}</div>
-          <h2 class="text-xl font-semibold mb-3">{event.title}</h2>
+          <div class="text-4xl mb-4 text-center">{event.icon}</div>
+          <h2 class="text-xl font-semibold mb-3 text-center">{event.title}</h2>
           <p class="text-gray-600">{event.description}</p>
         </div>
       {/each}
