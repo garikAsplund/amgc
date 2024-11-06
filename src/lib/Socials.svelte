@@ -4,7 +4,7 @@
 	import MapsSvg from './svgs/MapsSVG.svelte';
 </script>
 
-<div class="flex items-center justify-center space-x-4">
+<div class="flex items-center justify-center space-x-4 ">
     <FacebookSvg />
     <InstagramSvg />
     <MapsSvg />

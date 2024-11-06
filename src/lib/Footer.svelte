@@ -2,7 +2,7 @@
 	import { Phone, Mail, MapPin, Clock } from 'lucide-svelte';
 </script>
 
-<footer class="border-t">
+<footer class="border-t bg-slate-100">
 	<div class="mx-auto max-w-6xl px-4 py-12">
 		<div class="grid grid-cols-1 gap-12 text-neutral-600 md:grid-cols-3">
 			<!-- Contact -->
