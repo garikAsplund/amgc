@@ -2,12 +2,12 @@
 	import { loadStripe } from '@stripe/stripe-js';
 import { enhance } from '$app/forms';
   
-    let selectedMembership = null;
-    let handicapFee = 45;
-    let cartShedRental = 300;
-    let trailFee = 150;
-    let rangeBallsFee = 150;
-    let personalDonation = 0;
+    let selectedMembership = $state(null);
+    let handicapFee = $state(45);
+    let cartShedRental = $state(300);
+    let trailFee = $state(150);
+    let rangeBallsFee = $state(150);
+    let personalDonation = $state(0);
   
     const membershipOptions = [
       {
@@ -121,7 +121,7 @@ import { enhance } from '$app/forms';
 						<button
 							type="button"
 							class="w-20 rounded-md border border-gray-300 bg-white px-4 py-2 hover:bg-gray-100"
-							on:click={() => (rangeBallsFee = rangeBallsFee === 150 ? 200 : 150)}
+							onclick={() => (rangeBallsFee = rangeBallsFee === 150 ? 200 : 150)}
 						>
 							${rangeBallsFee}
 						</button>
@@ -132,7 +132,7 @@ import { enhance } from '$app/forms';
 					<button
 						type="button"
 						class="w-20 rounded-md border border-gray-300 bg-white px-4 py-2 hover:bg-gray-100"
-						on:click={() => (cartShedRental = cartShedRental === 300 ? 400 : 300)}
+						onclick={() => (cartShedRental = cartShedRental === 300 ? 400 : 300)}
 					>
 						${cartShedRental}
 					</button>
@@ -142,7 +142,7 @@ import { enhance } from '$app/forms';
 					<button
 						type="button"
 						class="w-20 rounded-md border border-gray-300 bg-white px-4 py-2 hover:bg-gray-100"
-						on:click={() => (trailFee = trailFee === 150 ? 0 : 150)}
+						onclick={() => (trailFee = trailFee === 150 ? 0 : 150)}
 					>
 						${trailFee}
 					</button>

@@ -7,7 +7,7 @@
 	const stats = [
 		{ label: 'Season', value: 'April 15 - October 15', isWide: true },
 		{ label: 'Holes', value: '9' },
-		{ label: 'Par', value: '72' },
+		{ label: 'Par', value: '36 or 72' },
 		{ label: 'Area', value: '43 acres' }
 	];
 </script>
@@ -22,7 +22,7 @@
 			a leisurely round.
 		</p>
 
-		<enhanced:img src="/static/pano.jpg" alt="Panoramic view of the golf course" class="mb-8 w-full dark:opacity-80" />
+		<enhanced:img src="/static/pano.jpg" alt="Panoramic view of Alpine Meadows Golf Course" title="Panoramic view of Alpine Meadows Golf Course" class="mb-8 w-full dark:opacity-80" />
 
 		<div class="mb-8 grid gap-6" style="grid-template-columns: 2fr repeat(3, 1fr)">
 			{#each stats as { label, value, isWide }}
@@ -37,8 +37,8 @@
 	</section>
 
 	<div class="mb-8 grid gap-6 md:grid-cols-2">
-		<enhanced:img src="/static/scorecard-front.gif" alt="Scorecard front" class="w-full dark:opacity-80" />
-		<enhanced:img src="/static/scorecard-back.gif" alt="Scorecard back" class="w-full dark:opacity-80" />
+		<enhanced:img src="/static/scorecard-front.gif" alt="Course layout" title="Course layout" class="w-full dark:opacity-80" />
+		<enhanced:img src="/static/scorecard-back.gif" alt="Scorecard" title="Scorecard" class="w-full dark:opacity-80" />
 	</div>
 
 	<div class="grid grid-cols-2">

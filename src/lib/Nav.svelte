@@ -23,6 +23,9 @@
 		<a href="/events" class="hover:opacity-75 p-4 {$page.url.pathname === '/events' ? 'border-b-2 border-slate-600 ' : ''}">
 			Events
 		</a>
+		<a href="/membership" class="hover:opacity-75 p-4 {$page.url.pathname === '/membership' ? 'border-b-2 border-slate-600 ' : ''}">
+			Membership
+		</a>
 		<a href="/team" class="hover:opacity-75 p-4 {$page.url.pathname === '/team' ? 'border-b-2 border-slate-600 ' : ''}">
 			Our Team
 		</a>
