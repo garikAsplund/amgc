@@ -50,7 +50,7 @@
 				alt="Alpine Meadows Golf Course"
 				class="h-full w-full object-cover"
 			/>
-			<div class="absolute inset-0 z-0 bg-orange-400/20"></div>
+			<div class="absolute inset-0 z-0 bg-orange-400/20 dark:bg-black/30"></div>
 		</div>
 	{/if}
 
