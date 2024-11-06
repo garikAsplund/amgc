@@ -2,9 +2,9 @@
 	import { loadStripe } from '@stripe/stripe-js';
 	import { enhance } from '$app/forms';
 
-	let selectedMembership = $state(null);
-	let personalDonation = $state(0);
-	let handicapQty = $state(0);
+	let selectedMembership = $state<string | null>(null); // `null` by default
+	let personalDonation = $state<number>(0);
+	let handicapQty = $state<number>(0);
 
 	const membershipOptions = [
 		{
@@ -98,25 +98,29 @@
 		}
 	];
 
-	const selectedOptions = $state(new Array(additionalOptions.length).fill(false));
+	const selectedOptions = $state<boolean[]>(new Array(additionalOptions.length).fill(false));
 
 	const donation = {
 		label: 'Personal Donation',
 		type: 'input',
-		onInput: (e) => (personalDonation = e.target.value)
+		onInput: (e) => {
+			personalDonation = Number(e.target.value);
+		}
 	};
 
 	let membershipFee = $derived(
-		selectedMembership
-			? membershipOptions.find((option) => option.value === selectedMembership).fee
-			: 0
+			membershipOptions.find((option) => option.value === selectedMembership)?.fee || 0
 	);
 
-	let additionalFee = $state(0);
+	let additionalFee = $state<number>(0);
 
-	let totalFee = $derived(membershipFee + additionalFee + personalDonation);
+	let totalFee = $derived(
 
-	const isSubmitDisabled = $derived(!selectedMembership);
+			membershipFee + additionalFee + personalDonation
+	);
+
+	// Update the submit button logic
+	const isSubmitDisabled = $derived(!totalFee > 0);
 
 	async function onclick() {
 		const stripe = await loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
@@ -191,72 +195,82 @@
 			<p class="mb-2 text-center font-bold">Additional Options:</p>
 			<div class="flex justify-center">
 				<div class="grid max-w-3xl grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3">
-				  {#each additionalOptions as option, index}
-					{#if option.type === 'quantity'}
-					  <!-- Quantity Selector -->
-					  <div class="flex items-start justify-between rounded-md border {handicapQty > 0 ? 'border-2 border-green-800' : 'border-gray-300'} bg-white px-4 py-2">
-						<div>
-						  <h3 class="font-medium">{option.label}</h3>
-						  <p class="pl-2 text-sm font-light text-gray-400">{option.alt}</p>
-						  <div class="flex justify-end">
-							<div class="mt-2 flex items-center">
-							  <button
-								type="button"
-								class="h-6 w-6 rounded bg-gray-200 text-gray-700 hover:bg-gray-300"
-								onclick={option.onDecrement}
-							  >
-								-
-							  </button>
-							  <span class="mx-3">{handicapQty}</span>
-							  <button
-								type="button"
-								class="h-6 w-6 rounded bg-gray-200 text-gray-700 hover:bg-gray-300"
-								onclick={option.onIncrement}
-							  >
-								+
-							  </button>
+					{#each additionalOptions as option, index}
+						{#if option.type === 'quantity'}
+							<!-- Quantity Selector -->
+							<div
+								class="flex items-start justify-between rounded-md border {handicapQty > 0
+									? 'border-2 border-green-800'
+									: 'border-gray-300'} bg-white px-4 py-2"
+							>
+								<div>
+									<h3 class="font-medium">{option.label}</h3>
+									<p class="pl-2 text-sm font-light text-gray-400">{option.alt}</p>
+									<div class="flex justify-end">
+										<div class="mt-2 flex items-center">
+											<button
+												type="button"
+												class="h-6 w-6 rounded bg-gray-200 text-gray-700 hover:bg-gray-300"
+												onclick={option.onDecrement}
+											>
+												-
+											</button>
+											<span class="mx-3">{handicapQty}</span>
+											<button
+												type="button"
+												class="h-6 w-6 rounded bg-gray-200 text-gray-700 hover:bg-gray-300"
+												onclick={option.onIncrement}
+											>
+												+
+											</button>
+										</div>
+									</div>
+								</div>
+								<p class="text-sm font-light text-gray-400">
+									${(handicapQty * option.fee).toFixed(2)}
+								</p>
 							</div>
-						  </div>
-						</div>
-						<p class="text-sm font-light text-gray-400">
-						  ${(handicapQty * option.fee).toFixed(2)}
-						</p>
-					  </div>
-					{:else if option.type === 'toggle'}
-					  <!-- Toggle Button (Custom Toggle) -->
-					  <div class="flex justify-center">
-						<input
-						  type="checkbox"
-						  id="option-{index}"
-						  checked={selectedOptions[index]}
-						  class="hidden"
-						  onchange={() => {
-							selectedOptions[index] = !selectedOptions[index];
-							if (selectedOptions[index]) {
-							  additionalFee += option.fee;
-							} else {
-							  additionalFee -= option.fee;
-							}
-						  }}
-						/>
-						<label
-						  for="option-{index}"
-						  class="flex cursor-pointer items-start justify-between rounded-md border border-gray-300 bg-white px-4 py-2 hover:bg-gray-100 {selectedOptions[index] ? 'bg-green-800 text-white hover:bg-green-900' : 'bg-white hover:bg-gray-100'}"
-						>
-						  <div>
-							<h3 class="font-medium pr-4">{option.label}</h3>
-							<p class="pl-2 text-sm font-light text-gray-400">{option.alt}</p>
-						  </div>
-						  <span class="{selectedOptions[index]
-										? 'text-gray-200'
-										: 'text-gray-400'} text-sm font-light  pt-1">${option.fee}</span>
-						</label>
-					  </div>
-					{/if}
-				  {/each}
+						{:else if option.type === 'toggle'}
+							<!-- Toggle Button (Custom Toggle) -->
+							<div class="flex justify-center">
+								<input
+									type="checkbox"
+									id="option-{index}"
+									checked={selectedOptions[index]}
+									class="hidden"
+									onchange={() => {
+										selectedOptions[index] = !selectedOptions[index];
+										if (selectedOptions[index]) {
+											additionalFee += option.fee;
+										} else {
+											additionalFee -= option.fee;
+										}
+									}}
+								/>
+								<label
+									for="option-{index}"
+									class="flex cursor-pointer items-start justify-between rounded-md border border-gray-300 bg-white px-4 py-2 hover:bg-gray-100 {selectedOptions[
+										index
+									]
+										? 'bg-green-800 text-white hover:bg-green-900'
+										: 'bg-white hover:bg-gray-100'}"
+								>
+									<div>
+										<h3 class="pr-4 font-medium">{option.label}</h3>
+										<p class="pl-2 text-sm font-light text-gray-400">{option.alt}</p>
+									</div>
+									<span
+										class="{selectedOptions[index]
+											? 'text-gray-200'
+											: 'text-gray-400'} pt-1 text-sm font-light">${option.fee}</span
+									>
+								</label>
+							</div>
+						{/if}
+					{/each}
 				</div>
-			  </div>
-			  
+			</div>
+
 			<!-- Input Field -->
 			<div class=" my-8 w-fit rounded-md border border-gray-300 bg-white px-4 py-2">
 				<label for="personal-donation" class="pr-4 font-medium">{donation.label}</label>
@@ -270,7 +284,7 @@
 						donation.onInput(event);
 					}}
 					maxlength="4"
-					pattern="\d{(1, 4)}"
+					pattern="\d(1, 4)"
 					class="w-20 rounded-md border px-2 py-1 text-right placeholder-gray-400 focus:border-2 focus:border-green-700 focus:outline-none"
 					placeholder="$0.00"
 					inputmode="numeric"
