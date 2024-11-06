@@ -32,8 +32,8 @@
 		'11n': '⛈️', // thunderstorm night
 		'13d': '❄️', // snow day
 		'13n': '❄️', // snow night
-		'50d': '🌁', // mist day
-		'50n': '🌁' // mist night
+		'50d': '🌁', // misty day
+		'50n': '🌁' // misty night
 	};
 
 	$effect(() => {
