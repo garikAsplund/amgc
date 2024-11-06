@@ -11,9 +11,9 @@
 		<a href="/" aria-label="Home" class="hover:opacity-75"><LogoSvg /> </a>
 	</div>
 	<div class="flex justify-center space-x-8 text-2xl">
-		<a href="" class="hover:opacity-75 p-4">Course</a>
-		<a href="" class="hover:opacity-75 p-4">Golf</a>
-		<a href="" class="hover:opacity-75 p-4">Events</a>
+		<a href="/course" class="hover:opacity-75 p-4">Course</a>
+		<a href="/golf" class="hover:opacity-75 p-4">Golf</a>
+		<a href="/events" class="hover:opacity-75 p-4">Events</a>
 		<a href="/team" class="hover:opacity-75 p-4">Our Team</a>
 	</div>
 	<div class="flex items-center space-x-4">
