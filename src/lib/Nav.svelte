@@ -9,7 +9,7 @@
 	class="sticky top-0 flex w-full items-center justify-between px-16 py-4 font-serif font-light text-gray-800 bg-white dark:bg-[#121212] dark:text-gray-200 z-10"
 	id="nav"
 >
-	<div class="flex-shrink-0">
+	<div class="flex-shrink-0 z-10">
 		<a href="/" aria-label="Home" class="hover:opacity-75"><LogoSvg /> </a>
 	</div>
 
