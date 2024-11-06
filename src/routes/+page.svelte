@@ -37,7 +37,7 @@
 			autoplay
 			playsinline
 			disablepictureinpicture
-			poster="first-frame.png"
+			poster="first-frame.avif"
 			onended={handleVideoEnd}
 		>
 			<source src="/amgc.webm" type="video/webm" />
@@ -55,7 +55,7 @@
 	{/if}
 
 	<div class="flex h-full flex-col items-center justify-center space-y-8 text-center px-8">
-		<h3 class="text-2xl text-gray-100">Welcome to</h3>
+		<p class="text-2xl text-gray-100">Welcome to</p>
 		<h1 class="font-serif text-6xl font-semibold text-gray-100">Alpine Meadows Golf Course</h1>
 		<h2 class="pt-8 font-serif text-4xl text-gray-100">
 			Golf at the base of the Wallowa Mountains
