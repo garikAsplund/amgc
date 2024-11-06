@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Socials from '$lib/Socials.svelte';
-	import LogoSvg from './svgs/LogoSVG.svelte';
+	import LogoSvg from '$lib/svgs/LogoSVG.svelte';
+	import WeatherWidget from '$lib/WeatherWidget.svelte';
 </script>
 
 <div
@@ -15,7 +16,8 @@
 		<a href="" class="hover:opacity-75 p-4">Events</a>
 		<a href="/team" class="hover:opacity-75 p-4">Our Team</a>
 	</div>
-	<div class="">
+	<div class="flex items-center space-x-4">
+		<WeatherWidget />
 		<Socials />
 	</div>
 </div>
