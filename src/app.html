@@ -11,6 +11,228 @@
 			content="Alpine Meadows Golf Course. A wonderful course tucked at the base of the Wallowa Mountains."
 		/>
 
+		<script type="application/ld+json">
+			{
+			  "@context": "https://schema.org",
+			  "@type": "GolfCourse",
+			  "name": "Alpine Meadows Golf Course",
+			  "description": "A scenic 9-hole golf course in Enterprise, Oregon offering both 36 and 72 par options, with special rates for residents, non-residents, juniors, and veterans.",
+			  "address": {
+				"@type": "PostalAddress",
+				"addressLocality": "Enterprise",
+				"addressRegion": "OR",
+				"postalCode": "97828",
+				"streetAddress": "66098 Golf Course Rd",
+				"addressCountry": "US"
+			  },
+			  "email": "golfalpinemeadows@gmail.com",
+			  "telephone": "(541) 426-3246",
+			  "openingHoursSpecification": {
+				"@type": "OpeningHoursSpecification",
+				"validFrom": "2024-04-15",
+				"validThrough": "2024-10-15",
+				"dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+				"description": "Course opening time is weather and frost permitting"
+			  },
+			  "amenityFeature": [
+				{
+				  "@type": "LocationFeatureSpecification",
+				  "name": "Golf Course",
+				  "value": "9 holes"
+				},
+				{
+				  "@type": "LocationFeatureSpecification",
+				  "name": "Par Options",
+				  "value": "36 and 72 par"
+				},
+				{
+				  "@type": "LocationFeatureSpecification",
+				  "name": "Driving Range",
+				  "value": true
+				},
+				{
+				  "@type": "LocationFeatureSpecification",
+				  "name": "Club Rentals",
+				  "value": true
+				}
+			  ],
+			  "hasOfferCatalog": {
+				"@type": "OfferCatalog",
+				"name": "Golf Rates",
+				"itemListElement": [
+				  {
+					"@type": "AggregateOffer",
+					"name": "9 Holes",
+					"offers": [
+					  {
+						"@type": "Offer",
+						"name": "Resident Golf",
+						"price": "30.00",
+						"priceCurrency": "USD"
+					  },
+					  {
+						"@type": "Offer",
+						"name": "Non-Resident Golf",
+						"price": "40.00",
+						"priceCurrency": "USD"
+					  },
+					  {
+						"@type": "Offer",
+						"name": "Junior (17 and under)",
+						"price": "10.00",
+						"priceCurrency": "USD"
+					  },
+					  {
+						"@type": "Offer",
+						"name": "Twilight (M-F after 4:00 PM)",
+						"price": "20.00",
+						"priceCurrency": "USD",
+						"availability": "https://schema.org/LimitedAvailability",
+						"availabilityStarts": "2024-06-01",
+						"availabilityEnds": "2024-08-31"
+					  },
+					  {
+						"@type": "Offer",
+						"name": "Cart Rental",
+						"price": "10.00",
+						"priceCurrency": "USD",
+						"description": "Per rider"
+					  },
+					  {
+						"@type": "Offer",
+						"name": "Hand Cart",
+						"price": "5.00",
+						"priceCurrency": "USD"
+					  }
+					]
+				  },
+				  {
+					"@type": "AggregateOffer",
+					"name": "18 Holes",
+					"offers": [
+					  {
+						"@type": "Offer",
+						"name": "Resident Golf",
+						"price": "40.00",
+						"priceCurrency": "USD"
+					  },
+					  {
+						"@type": "Offer",
+						"name": "Non-Resident Golf",
+						"price": "50.00",
+						"priceCurrency": "USD"
+					  },
+					  {
+						"@type": "Offer",
+						"name": "Junior (17 and under)",
+						"price": "10.00",
+						"priceCurrency": "USD"
+					  },
+					  {
+						"@type": "Offer",
+						"name": "Twilight (M-F after 4:00 PM)",
+						"price": "30.00",
+						"priceCurrency": "USD",
+						"availability": "https://schema.org/LimitedAvailability",
+						"availabilityStarts": "2024-06-01",
+						"availabilityEnds": "2024-08-31"
+					  },
+					  {
+						"@type": "Offer",
+						"name": "Cart Rental",
+						"price": "15.00",
+						"priceCurrency": "USD",
+						"description": "Per rider"
+					  },
+					  {
+						"@type": "Offer",
+						"name": "Hand Cart",
+						"price": "8.00",
+						"priceCurrency": "USD"
+					  }
+					]
+				  },
+				  {
+					"@type": "AggregateOffer",
+					"name": "Rentals and Range",
+					"offers": [
+					  {
+						"@type": "Offer",
+						"name": "Rental Clubs Basic",
+						"price": "5.00",
+						"priceCurrency": "USD"
+					  },
+					  {
+						"@type": "Offer",
+						"name": "Rental Clubs Premium",
+						"price": "10.00",
+						"priceCurrency": "USD"
+					  },
+					  {
+						"@type": "Offer",
+						"name": "Range Balls Small Bucket",
+						"price": "3.00",
+						"priceCurrency": "USD"
+					  },
+					  {
+						"@type": "Offer",
+						"name": "Range Balls Large Bucket",
+						"price": "5.00",
+						"priceCurrency": "USD"
+					  }
+					]
+				  },
+				  {
+					"@type": "AggregateOffer",
+					"name": "Special Deals",
+					"offers": [
+					  {
+						"@type": "Offer",
+						"name": "Senior Golf Package",
+						"price": "175.00",
+						"priceCurrency": "USD",
+						"description": "10 golf days for golfers over 70"
+					  },
+					  {
+						"@type": "Offer",
+						"name": "Foursome Special",
+						"price": "200.00",
+						"priceCurrency": "USD",
+						"description": "4 Players, 18 holes with Carts"
+					  },
+					  {
+						"@type": "Offer",
+						"name": "9-Hole Punch Card",
+						"price": "200.00",
+						"priceCurrency": "USD",
+						"description": "10 rounds of 9 holes"
+					  },
+					  {
+						"@type": "Offer",
+						"name": "Individual Range Pass",
+						"price": "150.00",
+						"priceCurrency": "USD",
+						"description": "Unlimited Range Balls"
+					  },
+					  {
+						"@type": "Offer",
+						"name": "Family Range Pass",
+						"price": "200.00",
+						"priceCurrency": "USD",
+						"description": "Unlimited Range Balls for Family"
+					  }
+					]
+				  }
+				]
+			  },
+			  "specialOpeningHoursSpecification": {
+				"@type": "SpecialOpeningHoursSpecification",
+				"name": "Military Veteran Discount",
+				"description": "25% discount for military veterans (does not apply to memberships)"
+			  }
+			}
+			</script>
+
 		<!-- Facebook Meta Tags -->
 		<meta property="og:url" content="https://www.golfalpinemeadows.com/" />
 		<meta property="og:type" content="website" />

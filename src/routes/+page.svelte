@@ -2,7 +2,7 @@
 	import { fade } from 'svelte/transition';
 	import { onMount } from 'svelte';
 
-	let videoEnded = $state(false);
+	let videoEnded = $state(true);
 	let navHeight: number = $state(0);
 
 	onMount(() => {
