@@ -6,12 +6,10 @@
 	let { children } = $props();
 </script>
 
-<div class="w-full h-full flex flex-col min-h-screen">
-
-<Nav />
-<div class="flex-grow relative w-full instet-0 overflow-hidden">
-{@render children()}
-</div>
-<Footer />
-
+<div class="flex h-full min-h-screen w-full flex-col">
+	<Nav />
+	<div class="instet-0 relative w-full flex-grow overflow-hidden dark:bg-[#121212]">
+		{@render children()}
+	</div>
+	<Footer />
 </div>

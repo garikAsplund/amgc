@@ -60,8 +60,8 @@
 		<h2 class="pt-8 font-serif text-4xl text-gray-100">
 			Golf at the base of the Wallowa Mountains
 		</h2>
-		<h4 class="absolute bottom-0 py-16 font-serif text-2xl text-gray-300">
+		<p class="absolute bottom-0 py-16 font-serif text-2xl text-gray-300">
 			Currently closed for the winter
-		</h4>
+		</p>
 	</div>
 </section>

@@ -72,6 +72,6 @@
 		{#if weather.loading === false}
 			<span className="text-2xl">{weatherEmojis[weather.icon]}</span>
 		{/if}
-		<span class="text-black opacity-80">{weather.temp}°</span>
+		<span class=" opacity-80">{weather.temp}°</span>
 	</div></a
 >

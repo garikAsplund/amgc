@@ -15,20 +15,20 @@
 <article class="mx-auto max-w-4xl space-y-16 px-4 py-12">
 	<!-- Introduction -->
 	<section>
-		<h1 class="mb-6 text-3xl font-bold">Alpine Meadows Golf Course</h1>
-		<p class="mb-8 text-lg text-gray-700">
+		<h1 class="mb-6 text-3xl font-bold dark:text-gray-300">Alpine Meadows Golf Course</h1>
+		<p class="mb-8 text-lg text-gray-700 dark:text-gray-400">
 			Nestled in Enterprise, Oregon, Alpine Meadows offers a scenic 9-hole course where Trout Creek
 			meanders through challenging fairways. Perfect for both competitive players and those seeking
 			a leisurely round.
 		</p>
 
-		<enhanced:img src="/static/pano.jpg" alt="Scorecard front" class="mb-8 w-full" />
+		<enhanced:img src="/static/pano.jpg" alt="Panoramic view of the golf course" class="mb-8 w-full dark:opacity-80" />
 
 		<div class="mb-8 grid gap-6" style="grid-template-columns: 2fr repeat(3, 1fr)">
 			{#each stats as { label, value, isWide }}
-				<div class="rounded-lg bg-gray-50 p-4">
-					<div class="text-sm text-gray-600">{label}</div>
-					<div class="text-xl font-semibold">
+				<div class="rounded-lg bg-gray-50 dark:bg-gray-700 p-4">
+					<div class="text-sm text-gray-600 dark:text-gray-300">{label}</div>
+					<div class="text-xl font-semibold dark:text-gray-200">
 						{value}
 					</div>
 				</div>
@@ -37,28 +37,28 @@
 	</section>
 
 	<div class="mb-8 grid gap-6 md:grid-cols-2">
-		<enhanced:img src="/static/scorecard-front.gif" alt="Scorecard front" class="w-full" />
-		<enhanced:img src="/static/scorecard-back.gif" alt="Scorecard back" class="w-full" />
+		<enhanced:img src="/static/scorecard-front.gif" alt="Scorecard front" class="w-full dark:opacity-80" />
+		<enhanced:img src="/static/scorecard-back.gif" alt="Scorecard back" class="w-full dark:opacity-80" />
 	</div>
 
 	<div class="grid grid-cols-2">
 		<!-- Weekly Events -->
 		<section>
-			<h2 class="mb-4 text-2xl font-semibold text-center">Weekly Events</h2>
-			<div class="space-y-2">
+			<h2 class="mb-4 text-2xl font-semibold text-center dark:text-gray-300">Weekly Events</h2>
+			<div class="space-y-2 dark:text-gray-400">
 				{#each weeklyEvents as { day, event, time }}
 					<div class="flex items-center gap-4">
-						<span class="w-24 font-medium">{day}</span>
+						<span class="w-24 font-medium dark:text-gray-200">{day}</span>
 						<span>{event} {time ? `at ${time}` : ''}</span>
 					</div>
 				{/each}
 			</div>
-			<p class="mt-2 text-sm text-gray-600">Course remains open to the public during events</p>
+			<p class="mt-2 text-sm text-gray-600 dark:text-gray-400">Course remains open to the public during events</p>
 		</section>
 		<!-- Facilities -->
 		<section>
-			<h2 class="mb-4 text-2xl font-semibold text-center">Practice Facilities</h2>
-			<ul class="list-inside list-disc space-y-2 text-gray-700">
+			<h2 class="mb-4 text-2xl font-semibold text-center dark:text-gray-300">Practice Facilities</h2>
+			<ul class="list-inside list-disc space-y-2 text-gray-700 dark:text-gray-400">
 				<li>Driving Range</li>
 				<li>Putting Green</li>
 				<li>Chipping Area</li>
@@ -67,18 +67,18 @@
 	</div>
 	<!-- History -->
 	<section>
-		<h2 class="mb-4 text-2xl font-semibold">A Rich History</h2>
+		<h2 class="mb-4 text-2xl font-semibold dark:text-gray-300">A Rich History</h2>
 		<div class="space-y-6">
-			<p class="text-gray-700">
+			<p class="text-gray-700 dark:text-gray-400">
 				Founded in 1917 by Enterprise Country Club members, our course began as a 43-acre vision to
 				bring golf to Wallowa County. In a time when golf was expanding beyond its exclusive roots,
 				local pioneers established the club with $5,000 in capital stock, offering shares at $25
 				each. The investment by early community members helped transform this "ideal" golfing
 				terrain into the course we know today.
 			</p>
-			<div class="rounded-lg bg-blue-50 p-6">
-				<h3 class="mb-2 text-xl font-medium">The Midnight Bomber Landing</h3>
-				<p class="text-gray-700">
+			<div class="rounded-lg bg-gray-50 dark:bg-gray-700 p-6">
+				<h3 class="mb-2 text-xl font-medium dark:text-gray-200">The Midnight Bomber Landing</h3>
+				<p class="text-gray-700 dark:text-gray-300">
 					On a foggy night in 1944, our course became an impromptu airfield when a B-24 Liberator
 					bomber lost its way during a training mission from Walla Walla. With their radio dead and
 					visibility near zero, the crew of ten found themselves circling the unfamiliar Wallowa
@@ -93,3 +93,4 @@
 		</div>
 	</section>
 </article>
+
