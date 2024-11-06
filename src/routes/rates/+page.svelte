@@ -78,15 +78,15 @@
         <tbody>
           <tr class="border-b border-gray-300 dark:border-gray-700">
             <td class="py-2">Rental Clubs</td>
-            <td class="text-right">$5.00 & $10.00</td>
+            <td class="text-right">$5 & $10</td>
           </tr>
           <tr class="border-b border-gray-300 dark:border-gray-700">
             <td class="py-2">Range Balls (small bucket)</td>
-            <td class="text-right">$3.00</td>
+            <td class="text-right">$3</td>
           </tr>
           <tr>
             <td class="py-2">Range Balls (large bucket)</td>
-            <td class="text-right">$5.00</td>
+            <td class="text-right">$5</td>
           </tr>
         </tbody>
       </table>
