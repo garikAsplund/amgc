@@ -8,10 +8,10 @@
 	}
 </script>
 
-<section class="flex h-[100vh] shrink-0 flex-col items-center justify-center ">
+<section class="flex h-[90vh] shrink-0 flex-col items-center justify-center w-full ">
 	{#if !videoEnded}
 		<video
-			class="absolute -z-10 h-full w-full object-cover"
+			class="absolute inset-0 -z-10 h-full w-full object-cover"
 			muted
 			autoplay
 			playsinline
