@@ -9,13 +9,11 @@
 	class="sticky top-0 flex w-full items-center justify-between px-16 py-4 font-serif font-light text-gray-800 bg-white dark:bg-[#121212] dark:text-gray-200 z-10"
 	id="nav"
 >
-	<!-- Left side (Logo) -->
 	<div class="flex-shrink-0">
 		<a href="/" aria-label="Home" class="hover:opacity-75"><LogoSvg /> </a>
 	</div>
 
-	<!-- Centered navigation links -->
-	<div class="absolute inset-x-0 flex justify-center space-x-8 text-2xl" id="links">
+	<div class="absolute inset-x-0 flex justify-center space-x-8 text-2xl">
 		<a href="/course" class="hover:opacity-75 p-4 {$page.url.pathname === '/course' ? 'border-b-2 border-slate-600 ' : ''}">
 			Course
 		</a>
@@ -30,7 +28,6 @@
 		</a>
 	</div>
 
-	<!-- Right side (Weather and Socials) -->
 	<div class="flex-shrink-0 flex items-center space-x-4">
 		<WeatherWidget />
 		<Socials />
