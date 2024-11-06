@@ -5,7 +5,8 @@
 </script>
 
 <div
-	class="relative top-0 flex w-full items-center justify-between space-x-4 px-16 py-4 font-serif font-light text-gray-800"
+	class="sticky top-0 flex w-full items-center justify-between space-x-4 px-16 py-4 font-serif font-light text-gray-800 bg-white z-10"
+	id="nav"
 >
 	<div class="">
 		<a href="/" aria-label="Home" class="hover:opacity-75"><LogoSvg /> </a>

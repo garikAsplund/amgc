@@ -1,14 +1,35 @@
 <script lang="ts">
 	import { fade } from 'svelte/transition';
+	import { onMount } from 'svelte';
 
 	let videoEnded = $state(false);
+	let navHeight: number = $state(0);
+
+	onMount(() => {
+		let navElement: HTMLDivElement = document.getElementById('nav');
+
+		function calculateNavHeight() {
+			if (navElement) {
+				navHeight = navElement.offsetHeight; 
+				// console.log(`Navigation height: ${navHeight}px`);
+			}
+		}
+		calculateNavHeight();
+		window.addEventListener('resize', calculateNavHeight);
+		return () => {
+			window.removeEventListener('resize', calculateNavHeight);
+		};
+	});
 
 	function handleVideoEnd() {
 		videoEnded = true;
 	}
 </script>
 
-<section class="flex h-[91vh] shrink-0 flex-col items-center justify-center w-full ">
+<section class="flex shrink-0 flex-col items-center justify-center w-full "
+    style="height: calc(100vh - {navHeight}px)"
+>
+<div class="absolute inset-0 -z-10 h-full w-full object-cover bg-black"></div>
 	{#if !videoEnded}
 		<video
 			class="absolute inset-0 -z-10 h-full w-full object-cover"
