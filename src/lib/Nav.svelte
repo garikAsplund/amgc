@@ -13,7 +13,7 @@
 		<a href="" class="hover:opacity-75 p-4">Course</a>
 		<a href="" class="hover:opacity-75 p-4">Golf</a>
 		<a href="" class="hover:opacity-75 p-4">Events</a>
-		<a href="" class="hover:opacity-75 p-4">Our Team</a>
+		<a href="/team" class="hover:opacity-75 p-4">Our Team</a>
 	</div>
 	<div class="">
 		<Socials />

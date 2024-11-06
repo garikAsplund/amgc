@@ -9,7 +9,7 @@
 <div class="w-full h-full overflow-hidden">
 
 <Nav />
-<div class="relative w-full instet-0">
+<div class="flex-grow relative w-full instet-0">
 {@render children()}
 </div>
 <Footer />
