@@ -39,7 +39,7 @@
     </div>
   
     <div class="mt-12 text-center">
-        <p class="text-lg font-medium mb-4">Available dates are limited</p>
+        <p class="text-lg font-medium mb-4">Call for booking</p>
         <p class="md:hidden">
           <a 
             href="tel:541-426-3246" 

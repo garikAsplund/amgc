@@ -8,7 +8,7 @@
 	}
 </script>
 
-<section class="flex h-[90vh] shrink-0 flex-col items-center justify-center w-full ">
+<section class="flex h-[91vh] shrink-0 flex-col items-center justify-center w-full ">
 	{#if !videoEnded}
 		<video
 			class="absolute inset-0 -z-10 h-full w-full object-cover"
