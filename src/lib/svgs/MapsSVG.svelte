@@ -3,7 +3,8 @@
 	target="_blank"
     aria-label="Alpine Meadows Golf Course on Google Maps"
     rel="noopener"
-	class="p-4 opacity-85 hover:opacity-65 md:p-1"
+	class="p-4 opacity-85 hover:opacity-65 md:p-1"	
+	title="Alpine Meadows Golf Course Location"
 >
 <svg
 	xmlns="http://www.w3.org/2000/svg"

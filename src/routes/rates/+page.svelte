@@ -1,4 +1,4 @@
-<div class="container mx-auto p-6 max-w-xl  text-gray-800 dark:text-gray-200">
+<div class="container mx-auto p-8 max-w-xl  text-gray-800 dark:text-gray-200">
     <h1 class="text-3xl font-bold text-center mb-6">Pricing</h1>
     <p class="text-center">April 15th through October 15th</p>
     <p class="text-center text-sm italic text-gray-600 dark:text-gray-400">*Course opening time is weather and frost permitting</p>

@@ -18,7 +18,7 @@
   ];
 </script>
 
-<section class="max-w-4xl mx-auto px-4 py-12">
+<section class="max-w-4xl mx-auto px-4 py-8">
   <header class="text-center mb-12">
     <h1 class="text-3xl font-bold mb-4 dark:text-gray-300">More Than Just Golf</h1>
     <p class="text-gray-600 max-w-2xl mx-auto dark:text-gray-400">

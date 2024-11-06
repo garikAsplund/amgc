@@ -12,10 +12,10 @@
 	];
 </script>
 
-<article class="mx-auto max-w-4xl space-y-16 px-4 py-12">
+<article class="mx-auto max-w-4xl space-y-16 px-4 py-8">
 	<!-- Introduction -->
 	<section>
-		<h1 class="mb-6 text-3xl font-bold dark:text-gray-300">Alpine Meadows Golf Course</h1>
+		<h1 class="mb-6 text-3xl font-bold dark:text-gray-300 text-center">Alpine Meadows Golf Course</h1>
 		<p class="mb-8 text-lg text-gray-700 dark:text-gray-400">
 			Nestled in Enterprise, Oregon, Alpine Meadows offers a scenic 9-hole course where Trout Creek
 			meanders through challenging fairways. Perfect for both competitive players and those seeking
