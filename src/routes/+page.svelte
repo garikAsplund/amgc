@@ -2,11 +2,14 @@
 	import { fade } from 'svelte/transition';
 	import { onMount } from 'svelte';
 
-	let videoEnded = $state(true);
+	let videoEnded = $state<string | boolean | null>("false");
+	$inspect(videoEnded);
 	let navHeight: number = $state(0);
 
 	onMount(() => {
 		let navElement: HTMLDivElement = document.getElementById('nav');
+		videoEnded = sessionStorage.getItem("visited");
+		setTimeout(() => sessionStorage.setItem("visited", "true"), 2000);
 
 		function calculateNavHeight() {
 			if (navElement) {
@@ -22,7 +25,7 @@
 	});
 
 	function handleVideoEnd() {
-		videoEnded = true;
+		videoEnded = "true";
 	}
 </script>
 
@@ -30,7 +33,7 @@
     style="height: calc(100vh - {navHeight}px)"
 >
 <div class="absolute inset-0 -z-10 h-full w-full object-cover bg-black"></div>
-	{#if !videoEnded}
+	{#if videoEnded === "false" || videoEnded === null}
 		<video
 			class="absolute inset-0 -z-10 h-full w-full object-cover"
 			muted

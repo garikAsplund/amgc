@@ -327,7 +327,7 @@
 		<button
 			type="submit"
 			disabled={isSubmitDisabled}
-			class="w-full rounded-md bg-green-700 px-4 py-3 font-medium text-white shadow-lg transition-all hover:bg-green-600 hover:shadow-xl disabled:cursor-not-allowed disabled:bg-gray-300 disabled:shadow-none"
+			class="w-full rounded-md bg-green-700 px-4 py-3 font-medium text-white shadow-lg transition-all hover:bg-green-600 hover:shadow-xl disabled:cursor-not-allowed disabled:bg-gray-300 dark:disabled:bg-gray-600 disabled:shadow-none"
 		>
 			Pay Now
 		</button>

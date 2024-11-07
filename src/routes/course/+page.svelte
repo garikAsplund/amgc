@@ -73,7 +73,7 @@
 				Founded in 1917 by Enterprise Country Club members, our course began as a 43-acre vision to
 				bring golf to Wallowa County. In a time when golf was expanding beyond its exclusive roots,
 				local pioneers established the club with $5,000 in capital stock, offering shares at $25
-				each. The investment by early community members helped transform this "ideal" golfing
+				each. The investment by early community members helped transform this ideal golfing
 				terrain into the course we know today.
 			</p>
 			<div class="rounded-lg bg-gray-50 dark:bg-gray-700 p-6">
