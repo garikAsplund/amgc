@@ -21,7 +21,7 @@
     aria-label="Main navigation">
 	<!-- Logo -->
 	<div class="flex-shrink-0 z-10">
-		<a href="/" aria-label="Return to homepage">
+		<a href="/" aria-label="Return to homepage" onclick={closeMenu}>
 			<LogoSvg />
 		</a>
 	</div>
