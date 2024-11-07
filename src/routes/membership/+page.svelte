@@ -150,40 +150,42 @@
 		<div class="flex justify-center">
 			<div class="grid max-w-3xl grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3">
 				{#each membershipOptions as option}
-					<label
-						for={option.value}
-						class="flex cursor-pointer items-start justify-between rounded-md border border-gray-300 px-4 py-2 {selectedMembership ===
-						option.value
-							? 'bg-green-800 text-white hover:bg-green-900'
-							: 'hover:bg-gray-100'}"
-					>
-						<div>
-							<div class="flex w-full items-center">
-								<h3 class="font-medium">{option.label}</h3>
-								<span
-									class="{selectedMembership === option.value
-										? 'text-gray-200'
-										: 'text-gray-400'} pl-2 pt-0.5 text-sm">${option.fee}</span
-								>
-							</div>
-							<p
-								class="pl-2 pt-1 text-sm {selectedMembership === option.value
-									? 'text-gray-200'
-									: 'text-gray-600'}"
-							>
-								{option.description}
-							</p>
-						</div>
-						<input
-							type="radio"
-							id={option.value}
-							name="membership-type"
-							value={option.value}
-							bind:group={selectedMembership}
-							class="hidden"
-						/>
-					</label>
-				{/each}
+    <label
+        for={option.value}
+        class="flex cursor-pointer items-start justify-between rounded-md border border-gray-300 px-4 py-2 {selectedMembership ===
+        option.value
+            ? 'bg-green-800 text-white hover:bg-green-900'
+            : 'hover:bg-gray-100'}"
+    >
+        <div>
+            <div class="flex w-full items-center">
+                <h3 class="font-medium">{option.label}</h3>
+                <span
+                    class="{selectedMembership === option.value
+                        ? 'text-gray-200'
+                        : 'text-gray-400'} pl-2 pt-0.5 text-sm">${option.fee}</span
+                >
+            </div>
+            <p
+                class="pl-2 pt-1 text-sm {selectedMembership === option.value
+                    ? 'text-gray-200'
+                    : 'text-gray-600'}"
+            >
+                {option.description}
+            </p>
+        </div>
+        <input
+            type="checkbox"
+            id={option.value}
+            name="membership-type"
+            checked={selectedMembership === option.value}
+            onchange={() => {
+                selectedMembership = selectedMembership === option.value ? null : option.value;
+            }}
+            class="hidden"
+        />
+    </label>
+{/each}
 			</div>
 		</div>
 	</div>
@@ -225,7 +227,7 @@
 									</div>
 								</div>
 								<p class="text-sm font-light text-gray-400">
-									${(handicapQty * option.fee).toFixed(2)}
+									${(handicapQty * option.fee)}
 								</p>
 							</div>
 						{:else if option.type === 'toggle'}
@@ -276,23 +278,25 @@
 			</div>
 
 			<!-- Input Field -->
-			<div class=" my-8 w-fit rounded-md border border-gray-300 bg-white px-4 py-2">
-				<label for="personal-donation" class="pr-4 font-medium">{donation.label}</label>
-				<input
-					type="text"
-					id="personal-donation"
-					name="personal-donation"
-					bind:value={donation.value}
-					oninput={(event) => {
-						event.target.value = event.target.value.replace(/\D/g, '');
-						donation.onInput(event);
-					}}
-					maxlength="4"
-					pattern="\d(1, 4)"
-					class="w-20 rounded-md border px-2 py-1 text-right placeholder-gray-400 focus:border-2 focus:border-green-700 focus:outline-none"
-					placeholder="$0.00"
-					inputmode="numeric"
-				/>
+			<div class="my-8 w-fit rounded-md border border-gray-300 {personalDonation === 0 ? '' : 'border-2 border-green-800'} bg-white px-4 py-2">
+				<label for="personal-donation" class="pr-4 font-medium ">{donation.label}</label>
+				<div class="relative inline-flex items-center before:absolute before:left-2 before:content-['$'] before:text-gray-500">
+					<input
+						type="text"
+						id="personal-donation"
+						name="personal-donation"
+						bind:value={donation.value}
+						oninput={(event) => {
+							event.target.value = event.target.value.replace(/\D/g, '');
+							donation.onInput(event);
+						}}
+						maxlength="4"
+						pattern="\d{1,4}"
+						class="w-20 rounded-md border pl-6 pr-2 py-1 text-right placeholder-gray-400 focus:border-2 focus:border-green-700 focus:outline-none"
+						placeholder="0.00"
+						inputmode="numeric"
+					/>
+				</div>
 			</div>
 		</div>
 
