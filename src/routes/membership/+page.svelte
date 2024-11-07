@@ -114,13 +114,11 @@
 
 	let additionalFee = $state<number>(0);
 
-	let totalFee = $derived(
-
+	let totalFee = $derived<number>(
 			membershipFee + additionalFee + personalDonation
 	);
 
-	// Update the submit button logic
-	const isSubmitDisabled = $derived(!totalFee > 0);
+	let isSubmitDisabled = $derived<boolean>(totalFee === 0);
 
 	async function onclick() {
 		const stripe = await loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
@@ -154,7 +152,7 @@
 				{#each membershipOptions as option}
 					<label
 						for={option.value}
-						class="flex cursor-pointer items-start justify-between rounded-md border border-gray-300 bg-white px-4 py-2 {selectedMembership ===
+						class="flex cursor-pointer items-start justify-between rounded-md border border-gray-300  px-4 py-2 {selectedMembership ===
 						option.value
 							? 'bg-green-800 text-white hover:bg-green-900'
 							: 'hover:bg-gray-100'}"
@@ -249,7 +247,7 @@
 								/>
 								<label
 									for="option-{index}"
-									class="flex cursor-pointer items-start justify-between rounded-md border border-gray-300 bg-white px-4 py-2 hover:bg-gray-100 {selectedOptions[
+									class="flex cursor-pointer w-full items-start justify-between rounded-md border border-gray-300  px-4 py-2 hover:bg-gray-100 {selectedOptions[
 										index
 									]
 										? 'bg-green-800 text-white hover:bg-green-900'
@@ -257,7 +255,9 @@
 								>
 									<div>
 										<h3 class="pr-4 font-medium">{option.label}</h3>
-										<p class="pl-2 text-sm font-light text-gray-400">{option.alt}</p>
+										<p class="pl-2 text-sm font-light {selectedOptions[index]
+											? 'text-gray-200'
+											: 'text-gray-400'}">{option.alt}</p>
 									</div>
 									<span
 										class="{selectedOptions[index]
