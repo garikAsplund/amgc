@@ -123,15 +123,21 @@
 	async function onclick() {
 		const stripe = await loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
 
+		const cartData = {
+            selectedMembership,
+            membershipOptions,
+            selectedOptions,
+            additionalOptions,
+            personalDonation,
+            handicapQty
+        };
+
 		const response = await fetch('api/checkout', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'
 			},
-			body: JSON.stringify({
-				priceId: 'price_1QIBg1Ixxan7cBV5DeK14CYA',
-				mode: 'payment'
-			})
+			body: JSON.stringify(cartData)
 		});
 
 		const { sessionId } = await response.json();
@@ -143,10 +149,10 @@
 <!-- <button {onclick}>Buy Single Membership</button> -->
 
 <form method="POST" use:enhance={onclick} class="mx-auto max-w-3xl py-8">
-	<h2 class="mb-8 text-center text-2xl font-bold">Alpine Meadows Golf Association Memberships</h2>
+	<h2 class="mb-8 text-center text-2xl font-bold dark:text-gray-300">Alpine Meadows Golf Association Memberships</h2>
 
 	<div class="mb-8">
-		<p class="mb-4 text-center font-bold">Select Membership Type:</p>
+		<p class="mb-4 text-center font-bold dark:text-gray-400">Select Membership Type:</p>
 		<div class="flex justify-center">
 			<div class="grid max-w-3xl grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3">
 				{#each membershipOptions as option}
@@ -154,8 +160,8 @@
         for={option.value}
         class="flex cursor-pointer items-start justify-between rounded-md border border-gray-300 px-4 py-2 {selectedMembership ===
         option.value
-            ? 'bg-green-800 text-white hover:bg-green-900'
-            : 'hover:bg-gray-100'}"
+            ? 'bg-green-800 dark:bg-gray-500 dark:hover:bg-gray-400 text-white hover:bg-green-900'
+            : 'hover:bg-gray-100 dark:hover:bg-gray-800 dark:text-gray-300 dark:bg-gray-900'}"
     >
         <div>
             <div class="flex w-full items-center">
@@ -169,7 +175,7 @@
             <p
                 class="pl-2 pt-1 text-sm {selectedMembership === option.value
                     ? 'text-gray-200'
-                    : 'text-gray-600'}"
+                    : 'text-gray-600 dark:text-gray-400'}"
             >
                 {option.description}
             </p>
@@ -200,8 +206,8 @@
 							<!-- Quantity Selector -->
 							<div
 								class="flex items-start justify-between rounded-md border {handicapQty > 0
-									? 'border-2 border-green-800'
-									: 'border-gray-300'} bg-white px-4 py-2"
+									? 'border-2 border-green-800 dark:border-green-400'
+									: 'border-gray-300'} bg-white dark:bg-gray-900 px-4 py-2 dark:text-gray-300"
 							>
 								<div>
 									<h3 class="font-medium">{option.label}</h3>
@@ -210,7 +216,7 @@
 										<div class="mt-2 flex items-center">
 											<button
 												type="button"
-												class="h-6 w-6 rounded bg-gray-200 text-gray-700 hover:bg-gray-300"
+												class="h-6 w-6 rounded bg-gray-200 text-gray-700 hover:bg-gray-300 "
 												onclick={option.onDecrement}
 											>
 												-
@@ -252,8 +258,8 @@
 									class="flex w-full cursor-pointer items-start justify-between rounded-md border border-gray-300 px-4 py-2 hover:bg-gray-100 {selectedOptions[
 										index
 									]
-										? 'bg-green-800 text-white hover:bg-green-900'
-										: 'bg-white hover:bg-gray-100'}"
+										? 'bg-green-800 dark:bg-gray-500 dark:hover:bg-gray-400 text-white  hover:bg-green-900'
+										: 'bg-white dark:bg-gray-900 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800'}"
 								>
 									<div>
 										<h3 class="pr-4 font-medium">{option.label}</h3>
@@ -278,8 +284,8 @@
 			</div>
 
 			<!-- Input Field -->
-			<div class="my-8 w-fit rounded-md border border-gray-300 {personalDonation === 0 ? '' : 'border-2 border-green-800'} bg-white px-4 py-2">
-				<label for="personal-donation" class="pr-4 font-medium ">{donation.label}</label>
+			<div class="my-8 w-fit rounded-md border border-gray-300 {personalDonation === 0 ? '' : 'border-2 border-green-800 dark:border-green-400'} bg-white dark:bg-gray-900 px-4 py-2">
+				<label for="personal-donation" class="pr-4 font-medium dark:text-gray-300 ">{donation.label}</label>
 				<div class="relative inline-flex items-center before:absolute before:left-2 before:content-['$'] before:text-gray-500">
 					<input
 						type="text"
@@ -292,7 +298,7 @@
 						}}
 						maxlength="4"
 						pattern="\d{1,4}"
-						class="w-20 rounded-md border pl-6 pr-2 py-1 text-right placeholder-gray-400 focus:border-2 focus:border-green-700 focus:outline-none"
+						class="w-20 rounded-md border pl-6 pr-2 py-1 dark:bg-gray-800 dark:text-gray-300 text-right placeholder-gray-400  focus:border-2 focus:border-green-700 dark:focus:border-green-400 focus:outline-none"
 						placeholder="0.00"
 						inputmode="numeric"
 					/>
@@ -300,7 +306,7 @@
 			</div>
 		</div>
 
-		<div class="flex justify-end pt-4">
+		<div class="flex justify-end pt-4 dark:text-gray-300">
 			<div class="mb-4 w-full max-w-xs">
 				<div class="mb-2 flex justify-between">
 					<p class="font-light">Memberships:</p>
@@ -323,7 +329,7 @@
 			disabled={isSubmitDisabled}
 			class="w-full rounded-md bg-green-700 px-4 py-3 font-medium text-white shadow-lg transition-all hover:bg-green-600 hover:shadow-xl disabled:cursor-not-allowed disabled:bg-gray-300 disabled:shadow-none"
 		>
-			Pay Now ${totalFee.toFixed(2)}
+			Pay Now
 		</button>
 	</div>
 </form>
