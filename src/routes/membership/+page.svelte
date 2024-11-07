@@ -156,7 +156,7 @@
 
 <!-- <button {onclick}>Buy Single Membership</button> -->
 
-<form method="POST" use:enhance={onclick} class="mx-auto max-w-3xl py-8">
+<form method="POST" use:enhance={onclick} class="mx-auto max-w-3xl py-8 px-8">
 	<h2 class="mb-8 text-center text-2xl font-bold dark:text-gray-300">
 		Alpine Meadows Golf Association Memberships
 	</h2>
@@ -164,7 +164,7 @@
 	<div class="mb-8">
 		<p class="mb-4 text-center font-bold dark:text-gray-400">Select Membership Type:</p>
 		<div class="flex justify-center">
-			<div class="grid max-w-3xl grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3">
+			<div class="grid max-w-3xl grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
 				{#each membershipOptions as option}
 					<label
 						for={option.value}
@@ -210,7 +210,7 @@
 		<div class="mb-4 flex flex-col items-center">
 			<p class="mb-2 text-center font-bold dark:text-gray-400">Additional Options:</p>
 			<div class="flex justify-center">
-				<div class="grid max-w-3xl grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3">
+				<div class="grid max-w-3xl grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
 					{#each additionalOptions as option, index}
 						{#if option.type === 'quantity'}
 							<!-- Quantity Selector -->
@@ -345,7 +345,7 @@
 			type="submit"
 			{onclick}
 			disabled={isSubmitDisabled || isSubmitting}
-			class="w-full rounded-md bg-green-700 px-4 py-3 font-medium text-white shadow-lg transition-all hover:bg-green-600 hover:shadow-xl disabled:cursor-not-allowed disabled:bg-gray-300 disabled:shadow-none dark:disabled:bg-gray-600"
+			class="w-full rounded-md bg-green-700 dark:bg-green-700/80 px-4 py-3 font-medium text-white shadow-lg transition-all hover:bg-green-600 dark:hover:bg-green-600/40 hover:shadow-xl disabled:cursor-not-allowed disabled:bg-gray-300 disabled:shadow-none dark:disabled:bg-gray-600"
 		>
 			{isSubmitting ? 'Please wait...' : 'Pay Now'}
 		</button>

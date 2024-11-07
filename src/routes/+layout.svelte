@@ -7,10 +7,16 @@
 	let { children } = $props();
 </script>
 
-<div class="flex h-full min-h-screen w-full flex-col">
+<div class="flex h-full min-h-screen w-full flex-col overflow-hidden">
 	<Nav />
-	<div class="instet-0 relative w-full flex-grow overflow-hidden {$page.url.pathname === '/' ? '' : 'dark:bg-[#121212]'}">
-		{@render children()}
+	<div
+		class="inset-0 relative w-full flex-grow overflow-hidden overflow-x-hidden
+		{$page.url.pathname === '/' ? '' : 'dark:bg-[#121212]'}"
+	>
+		<!-- Wrapper for children to ensure they stay within viewport on mobile -->
+		<div class="w-full h-full overflow-hidden">
+			{@render children()}
+		</div>
 	</div>
 	<Footer />
 </div>

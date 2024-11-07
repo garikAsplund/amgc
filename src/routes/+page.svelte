@@ -58,12 +58,12 @@
 	{/if}
 
 	<div class="flex h-full flex-col items-center justify-center space-y-8 text-center px-8">
-		<p class="text-2xl text-gray-100">Welcome to</p>
-		<h1 class="font-serif text-6xl font-semibold text-gray-100">Alpine Meadows Golf Course</h1>
-		<h2 class="pt-8 font-serif text-4xl text-gray-100">
+		<p class="text-lg md:text-2xl text-gray-100">Welcome to</p>
+		<h1 class="font-serif text-2xl md:text-6xl font-semibold text-gray-100">Alpine Meadows Golf Course</h1>
+		<h2 class="pt-8 font-serif text-xl md:text-4xl text-gray-100">
 			Golf at the base of the Wallowa Mountains
 		</h2>
-		<p class="absolute bottom-0 py-16 font-serif text-2xl text-gray-300">
+		<p class="absolute bottom-0 py-16 font-serif text-xl md:text-2xl text-gray-300">
 			Currently closed for the winter
 		</p>
 	</div>

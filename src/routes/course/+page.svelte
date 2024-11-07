@@ -12,7 +12,7 @@
 	];
 </script>
 
-<article class="mx-auto max-w-4xl space-y-16 px-4 py-8">
+<article class="mx-auto max-w-4xl space-y-16 px-8 py-8">
 	<!-- Introduction -->
 	<section>
 		<h1 class="mb-6 text-3xl font-bold dark:text-gray-300 text-center">Alpine Meadows Golf Course</h1>
@@ -24,13 +24,11 @@
 
 		<enhanced:img src="/static/pano.jpg" alt="Panoramic view of Alpine Meadows Golf Course" title="Panoramic view of Alpine Meadows Golf Course" class="mb-8 w-full dark:opacity-80" />
 
-		<div class="mb-8 grid gap-6" style="grid-template-columns: 2fr repeat(3, 1fr)">
+		<div class="mb-8 grid gap-6 grid-cols-1 sm:grid-cols-[2fr_repeat(3,_1fr)] md:grid-cols-[2fr_repeat(3,_1fr)]">
 			{#each stats as { label, value, isWide }}
 				<div class="rounded-lg bg-gray-50 dark:bg-gray-700 p-4">
 					<div class="text-sm text-gray-600 dark:text-gray-300">{label}</div>
-					<div class="text-xl font-semibold dark:text-gray-200">
-						{value}
-					</div>
+					<div class="text-xl font-semibold dark:text-gray-200">{value}</div>
 				</div>
 			{/each}
 		</div>
@@ -41,7 +39,7 @@
 		<enhanced:img src="/static/scorecard-back.gif" alt="Scorecard" title="Scorecard" class="w-full dark:opacity-80" />
 	</div>
 
-	<div class="grid grid-cols-2">
+	<div class="grid md:grid-cols-2 grid-cols-1 gap-8">
 		<!-- Weekly Events -->
 		<section>
 			<h2 class="mb-4 text-2xl font-semibold text-center dark:text-gray-300">Weekly Events</h2>

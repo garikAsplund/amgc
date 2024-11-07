@@ -18,7 +18,7 @@
   ];
 </script>
 
-<section class="max-w-4xl mx-auto px-4 py-8">
+<section class="max-w-4xl mx-auto px-8 py-8">
   <header class="text-center mb-12">
     <h1 class="text-3xl font-bold mb-4 dark:text-gray-300">More Than Just Golf</h1>
     <p class="text-gray-600 max-w-2xl mx-auto dark:text-gray-400">
@@ -43,7 +43,7 @@
     <p class="md:hidden">
       <a 
         href="tel:541-426-3246" 
-        class="inline-block bg-blue-600 dark:bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-700 dark:hover:bg-blue-600 transition-colors"
+        class="inline-block bg-green-700 dark:bg-green-800 text-white px-6 py-3 rounded-lg hover:bg-green-600 dark:hover:bg-green-700 transition-colors"
       >
         Call (541) 426-3246
       </a>
