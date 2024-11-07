@@ -20,8 +20,8 @@ export const POST = async ({ request }) => {
             payment_method_types: ['card'],
             line_items: items,
             mode: 'payment',
-            success_url: `${process.env.PUBLIC_BASE_URL}/success`,
-            cancel_url: `${process.env.PUBLIC_BASE_URL}/cart`,
+            success_url: `${import.meta.env.VITE_BASE_URL}/checkout/success`,
+            cancel_url: `${import.meta.env.VITE_BASE_URL}/checkout/failure`,
         });
 
         return json({ sessionId: session.id });
