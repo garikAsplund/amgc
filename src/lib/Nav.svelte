@@ -13,7 +13,7 @@
 		<a href="/" aria-label="Home" class="hover:opacity-75"><LogoSvg /> </a>
 	</div>
 
-	<div class="absolute inset-x-0 flex justify-center space-x-8 lg:text-2xl md:text-xl text-lg">
+	<div class="absolute inset-x-0 lg:flex justify-center xl:space-x-8 lg:space-x-4 xl:text-2xl lg:text-lg hidden">
 		<a href="/course" class="hover:opacity-75 p-4 {$page.url.pathname === '/course' ? 'border-b-2 border-slate-600 ' : ''}">
 			Course
 		</a>
@@ -31,7 +31,7 @@
 		</a>
 	</div>
 
-	<div class="flex-shrink-0 flex items-center space-x-4">
+	<div class=" flex items-center space-x-4">
 		<WeatherWidget />
 		<Socials />
 	</div>
