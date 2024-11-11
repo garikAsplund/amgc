@@ -57,7 +57,7 @@
 		</div>
 	{/if}
 
-	<div class="flex h-full flex-col items-center justify-center space-y-8 text-center px-8">
+	<div class="flex h-full flex-col items-center justify-center space-y-8 text-center px-8 -translate-y-12">
 		<p class="text-lg md:text-2xl text-gray-100">Welcome to</p>
 		<h1 class="font-serif text-2xl md:text-6xl font-semibold text-gray-100">Alpine Meadows Golf Course</h1>
 		<h2 class="pt-8 font-serif text-xl md:text-4xl text-gray-100">

@@ -68,6 +68,15 @@
 			Events
 		</a>
 		<a
+			href="/tournaments"
+			class="p-4 hover:opacity-75 {$page.url.pathname === '/tournaments'
+				? 'border-b-2 border-slate-600'
+				: ''}"
+			aria-current={$page.url.pathname === '/tournaments' ? 'page' : undefined}
+		>
+			Tournaments
+		</a>
+		<a
 			href="/membership"
 			class="p-4 hover:opacity-75 {$page.url.pathname === '/membership'
 				? 'border-b-2 border-slate-600'
@@ -124,53 +133,87 @@
 	>
 		<a
 			href="/course"
-			class="w-full p-4 text-center text-lg hover:opacity-75 {$page.url.pathname === '/course'
-				? 'border-b-2 border-slate-600'
-				: ''}"
+			class="w-full p-4 text-center text-lg hover:opacity-75"
 			onclick={closeMenu}
 			aria-current={$page.url.pathname === '/course' ? 'page' : undefined}
 		>
-			Course
+			<span
+				class="{$page.url.pathname === '/course'
+					? 'inline-block border-b-2 border-slate-600'
+					: ''}"
+			>
+				Course
+			</span>
 		</a>
 		<a
 			href="/rates"
-			class="w-full p-4 text-center text-lg hover:opacity-75 {$page.url.pathname === '/rates'
-				? 'border-b-2 border-slate-600'
-				: ''}"
+			class="w-full p-4 text-center text-lg hover:opacity-75"
 			onclick={closeMenu}
 			aria-current={$page.url.pathname === '/rates' ? 'page' : undefined}
 		>
-			Rates
+			<span
+				class="{$page.url.pathname === '/rates'
+					? 'inline-block border-b-2 border-slate-600'
+					: ''}"
+			>
+				Rates
+			</span>
 		</a>
 		<a
 			href="/events"
-			class="w-full p-4 text-center text-lg hover:opacity-75 {$page.url.pathname === '/events'
-				? 'border-b-2 border-slate-600'
-				: ''}"
+			class="w-full p-4 text-center text-lg hover:opacity-75"
 			onclick={closeMenu}
 			aria-current={$page.url.pathname === '/events' ? 'page' : undefined}
 		>
-			Events
+			<span
+				class="{$page.url.pathname === '/events'
+					? 'inline-block border-b-2 border-slate-600'
+					: ''}"
+			>
+				Events
+			</span>
+		</a>
+		<a
+			href="/tournaments"
+			class="w-full p-4 text-center text-lg hover:opacity-75"
+			onclick={closeMenu}
+			aria-current={$page.url.pathname === '/tournaments' ? 'page' : undefined}
+		>
+			<span
+				class="{$page.url.pathname === '/tournaments'
+					? 'inline-block border-b-2 border-slate-600'
+					: ''}"
+			>
+				Tournaments
+			</span>
 		</a>
 		<a
 			href="/membership"
-			class="w-full p-4 text-center text-lg hover:opacity-75 {$page.url.pathname === '/membership'
-				? 'border-b-2 border-slate-600'
-				: ''}"
+			class="w-full p-4 text-center text-lg hover:opacity-75"
 			onclick={closeMenu}
 			aria-current={$page.url.pathname === '/membership' ? 'page' : undefined}
 		>
-			Membership
+			<span
+				class="{$page.url.pathname === '/membership'
+					? 'inline-block border-b-2 border-slate-600'
+					: ''}"
+			>
+				Membership
+			</span>
 		</a>
 		<a
 			href="/team"
-			class="w-full p-4 text-center text-lg hover:opacity-75 {$page.url.pathname === '/team'
-				? 'border-b-2 border-slate-600'
-				: ''}"
+			class="w-full p-4 text-center text-lg hover:opacity-75"
 			onclick={closeMenu}
 			aria-current={$page.url.pathname === '/team' ? 'page' : undefined}
 		>
-			Our Team
+			<span
+				class="{$page.url.pathname === '/team'
+					? 'inline-block border-b-2 border-slate-600'
+					: ''}"
+			>
+				Our Team
+			</span>
 		</a>
 	</div>
 {/if}
