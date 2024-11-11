@@ -7,5 +7,5 @@
 <div class="flex items-center justify-center space-x-4 ">
     <FacebookSvg />
     <InstagramSvg />
-    <div class="hidden md:block"><MapsSvg /></div>
+    <!-- <div class="hidden md:block"><MapsSvg /></div> -->
 </div>

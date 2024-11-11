@@ -3,10 +3,11 @@
 	import Socials from '$lib/Socials.svelte';
 </script>
 
-<footer class="relative bottom-0 mt-auto w-full border-t dark:border-gray-700 bg-slate-100 dark:bg-[#121212]">
+<footer
+	class="relative bottom-0 mt-auto w-full border-t bg-slate-100 dark:border-gray-700 dark:bg-[#121212]"
+>
 	<div class="mx-auto max-w-6xl px-4 py-12">
 		<div class="grid grid-cols-1 gap-12 pl-8 text-neutral-600 md:grid-cols-3 dark:text-neutral-400">
-
 			<!-- Contact with integrated socials -->
 			<div class="order-3 space-y-4 md:order-1">
 				<h3 class="text-lg font-medium text-neutral-900 dark:text-neutral-300">Contact</h3>
@@ -26,14 +27,9 @@
 						<Mail size={18} />
 						<span>golfalpinemeadows@gmail.com</span>
 					</div>
-					
-					<!-- Social Media Icons (only visible on mobile) -->
-					<div class="md:hidden pt-4 flex justify-center pr-8">
-						<Socials />
-					</div>
 				</div>
 			</div>
-			
+
 			<!-- Location -->
 			<div class="order-2 space-y-4 md:order-2">
 				<h3 class="text-lg font-medium text-neutral-900 dark:text-neutral-300">Location</h3>
@@ -50,7 +46,7 @@
 					</span>
 				</a>
 			</div>
-			
+
 			<!-- Hours -->
 			<div class="order-1 space-y-4 md:order-3">
 				<h3 class="text-lg font-medium text-neutral-900 dark:text-neutral-300">Hours</h3>
@@ -62,6 +58,9 @@
 					</div>
 				</div>
 			</div>
+		</div>
+		<div class="pt-8">
+			<Socials />
 		</div>
 	</div>
 </footer>

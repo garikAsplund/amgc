@@ -70,8 +70,8 @@
 >
 	<div class="flex items-center gap-2 p-2">
 		{#if weather.loading === false}
-			<span className="text-2xl">{weatherEmojis[weather.icon]}</span>
+			<span class="text-2xl">{weatherEmojis[weather.icon]}</span>
+			<span class=" opacity-80">{weather.temp}°</span>
 		{/if}
-		<span class=" opacity-80">{weather.temp}°</span>
 	</div></a
 >

@@ -108,9 +108,9 @@
 	<!-- Weather and Socials -->
 	<div class="flex items-center space-x-4" aria-label="Utilities">
 		<WeatherWidget />
-		<div class="hidden md:block">
+		<!-- <div class="hidden md:block">
 			<Socials />
-		</div>
+		</div> -->
 	</div>
 </nav>
 
