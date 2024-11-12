@@ -10,7 +10,7 @@
 		<div class="grid grid-cols-1 gap-12 pl-8 text-neutral-600 md:grid-cols-3 dark:text-neutral-400">
 			<!-- Contact with integrated socials -->
 			<div class="order-3 space-y-4 md:order-1">
-				<h2 class="text-lg font-medium text-neutral-900 dark:text-neutral-300">Contact</h2>
+				<h3 class="text-lg font-medium text-neutral-900 dark:text-neutral-300">Contact</h3>
 				<div class="space-y-3">
 					<a
 						href="tel:541-426-3246"
@@ -32,7 +32,7 @@
 
 			<!-- Location -->
 			<div class="order-2 space-y-4 md:order-2">
-				<h2 class="text-lg font-medium text-neutral-900 dark:text-neutral-300">Location</h2>
+				<h3 class="text-lg font-medium text-neutral-900 dark:text-neutral-300">Location</h3>
 				<a
 					href="https://maps.google.com/?q=66098+Golf+Course+Rd+Enterprise+OR+97828"
 					target="_blank"
@@ -49,7 +49,7 @@
 
 			<!-- Hours -->
 			<div class="order-1 space-y-4 md:order-3">
-				<h2 class="text-lg font-medium text-neutral-900 dark:text-neutral-300">Hours</h2>
+				<h3 class="text-lg font-medium text-neutral-900 dark:text-neutral-300">Hours</h3>
 				<div class="flex items-start gap-2">
 					<Clock size={18} class="mt-1 flex-shrink-0" />
 					<div>
