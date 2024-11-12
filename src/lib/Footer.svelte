@@ -8,12 +8,12 @@
 <footer
 	class="relative bottom-0 mt-auto w-full border-t bg-slate-100 dark:border-gray-700 dark:bg-[#121212]"
 >
-	<div class="mx-auto max-w-6xl px-4 py-12">
+	<div class="mx-auto max-w-7xl px-4 py-12">
 		<div
 			class="grid grid-cols-1 justify-evenly gap-12 pl-8 text-neutral-600 md:grid-cols-3 lg:grid-cols-4 dark:text-neutral-400"
 		>
 			<!-- Logo -->
-			<a href="/" aria-label="Return to homepage" class="hover:opacity-80 w-fit h-fit">
+			<a href="/" aria-label="Return to homepage" class="hover:opacity-80 w-fit h-fit hidden lg:block">
 				<div class="hidden pt-4 lg:block dark:hidden">
 					<LogoSvg />
 				</div>
