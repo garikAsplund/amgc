@@ -37,7 +37,7 @@
 					tabindex="0"
 					role="button"
 					aria-label="Phone number: (541) 426-3246"
-					class="flex items-center gap-2 transition-colors hover:text-neutral-900 md:hidden dark:hover:text-neutral-300"
+					class="flex items-center gap-2 transition-colors hover:text-neutral-900 md:hidden dark:hover:text-neutral-300 "
 				  >
 					<Phone size={18} />
 					<span>(541) 426-3246</span>
@@ -48,7 +48,7 @@
 					tabindex="0"
 					role="button"
 					aria-label="Phone number: (541) 426-3246"
-					class="hidden items-center gap-2 transition-colors md:flex"
+					class="hidden items-center gap-2 transition-colors md:flex cursor-default"
 				  >
 					<Phone size={18} />
 					<span>(541) 426-3246</span>
@@ -73,7 +73,7 @@
 					tabindex="0"
 					role="button"
 					aria-label="Email: golfalpinemeadows@gmail.com"
-					class="flex flex-shrink-0 items-center gap-2 transition-colors"
+					class="flex flex-shrink-0 items-center gap-2 transition-colors cursor-default"
 				  >
 					<Mail size={18} class="mt-1 flex-shrink-0" />
 					<span>golfalpinemeadows@gmail.com</span>
