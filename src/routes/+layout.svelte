@@ -7,7 +7,7 @@
 	let { children } = $props();
 </script>
 
-<div class="flex h-full min-h-screen w-full flex-col overflow-hidden">
+<div class="flex h-full min-h-screen w-full flex-col ">
 	<Nav />
 	<div
 		class="inset-0 relative w-full flex-grow overflow-hidden overflow-x-hidden

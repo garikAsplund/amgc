@@ -15,10 +15,29 @@
 	function closeMenu() {
 		isMenuOpen = false;
 	}
+
+	let lastScrollY = $state(0);
+  let isNavbarVisible = $state(true);
+
+  const handleScroll = (event: Event) => {
+    const currentScrollY = window.scrollY;
+
+    if (currentScrollY > lastScrollY && currentScrollY > 100) {
+      // Scrolling down and past 100px
+      isNavbarVisible = false;
+    } else if (currentScrollY < lastScrollY || currentScrollY < 100) {
+      // Scrolling up or near the top
+      isNavbarVisible = true;
+    }
+
+    lastScrollY = currentScrollY;
+  };
 </script>
 
+<svelte:window on:scroll={handleScroll} />
+
 <nav
-	class="sticky top-0 z-10 flex w-full items-center justify-between bg-white py-4 font-serif font-light text-gray-800 md:px-8 dark:bg-[#121212] dark:text-gray-200"
+	class="sticky top-0 z-10 flex w-full items-center {isNavbarVisible ? 'translate-y-0' : '-translate-y-full' } justify-between bg-white py-4 font-serif font-light text-gray-800 md:px-8 dark:bg-[#121212] dark:text-gray-200 transition-transform duration-1000 ease-in-out"
 	id="nav"
 	aria-label="Main navigation"
 >

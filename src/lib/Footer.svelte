@@ -50,12 +50,19 @@
 			<!-- Hours -->
 			<div class="order-1 space-y-4 md:order-3">
 				<h3 class="text-lg font-medium text-neutral-900 dark:text-neutral-300">Hours</h3>
-				<div class="flex items-start gap-2">
-					<Clock size={18} class="mt-1 flex-shrink-0" />
+				<div class="flex flex-col items-start gap-2">
 					<div>
-						<p>Open 7 days a week</p>
-						<p>April 15th - October 15th</p>
+						<Clock size={18} class="mt-1 flex-shrink-0" />
+						<div>
+							<p>Open 7 days a week</p>
+							<p>April 15th - October 15th</p>
+						</div>
 					</div>
+					<!-- <div class="footer-hours text-center text-sm">
+						<p>Apr-May: 9 AM - 6 PM</p>
+						<p>Jun-Aug: 7 AM - 7 PM</p>
+						<p>Sep-Oct: 8 AM - 6 PM</p>
+					</div> -->
 				</div>
 			</div>
 		</div>
