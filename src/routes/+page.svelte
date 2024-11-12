@@ -22,16 +22,8 @@
 
 	// Simulate form submission for demonstration
 	async function handleSubmit(event) {
-		event.preventDefault();
 		isLoading = true;
-		emailMessage = '';
 
-		try {
-			emailMessage = 'Thank you for subscribing!';
-			isSubmitted = true;
-		} catch (error) {
-			emailMessage = 'There was an error. Please try again.';
-		}
 	}
 
 	onMount(() => {
@@ -115,7 +107,8 @@
 			<!-- Newsletter Signup Form -->
 			<form
 				method="POST"
-				use:enhance
+				use:enhance						
+				onsubmit={handleSubmit}
 				class="flex flex-col items-center space-y-4"
 			>
 				<div class="flex w-full max-w-sm items-center space-x-2">
@@ -133,10 +126,9 @@
 						class="rounded-md bg-green-700 px-4 py-2 font-medium text-white shadow-lg transition-all hover:bg-green-600 dark:bg-green-700/80 dark:hover:bg-green-600/40"
 						class:opacity-50={isLoading}
 						disabled={isLoading}
-						onsubmit={() => isLoading = true}
 					>
 						{#if isLoading}
-							Loading...
+							Submitting...
 						{:else}
 							Subscribe
 						{/if}
