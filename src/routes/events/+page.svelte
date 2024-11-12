@@ -7,7 +7,7 @@
     },
     {
       title: "Private Events",
-      description: "Host your family reunions, bridal & baby showers, retirement parties, and milestone celebrations with scenic Wallowa Mountain views. We provide catering and professional service so you can focus on your guests.",
+      description: "Host your family reunions, bridal & baby showers, retirement parties, and milestone celebrations with scenic Wallowa Mountain views.",
       icon: "🎉"
     },
     {

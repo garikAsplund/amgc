@@ -59,7 +59,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="pt-8">
+		<div class="pt-8 dark:text-neutral-300">
 			<Socials />
 		</div>
 	</div>
