@@ -6,7 +6,9 @@
 	import { page } from '$app/stores';
 	import { ChevronDown, X } from 'lucide-svelte';
 
-	let isMenuOpen = false;
+	let isMenuOpen = $state(false);
+	let lastScrollY = $state(0);
+	let isNavbarVisible = $state(true);
 
 	function toggleMenu() {
 		isMenuOpen = !isMenuOpen;
@@ -16,28 +18,25 @@
 		isMenuOpen = false;
 	}
 
-	let lastScrollY = $state(0);
-  let isNavbarVisible = $state(true);
+	function handleScroll(event: Event) {
+		const currentScrollY = window.scrollY;
 
-  const handleScroll = (event: Event) => {
-    const currentScrollY = window.scrollY;
+		if (currentScrollY > lastScrollY && currentScrollY > 100) {
+			isNavbarVisible = false;
+		} else if (currentScrollY < lastScrollY || currentScrollY < 100) {
+			isNavbarVisible = true;
+		}
 
-    if (currentScrollY > lastScrollY && currentScrollY > 100) {
-      // Scrolling down and past 100px
-      isNavbarVisible = false;
-    } else if (currentScrollY < lastScrollY || currentScrollY < 100) {
-      // Scrolling up or near the top
-      isNavbarVisible = true;
-    }
-
-    lastScrollY = currentScrollY;
-  };
+		lastScrollY = currentScrollY;
+	};
 </script>
 
 <svelte:window on:scroll={handleScroll} />
 
 <nav
-	class="sticky top-0 z-10 flex w-full items-center {isNavbarVisible ? 'translate-y-0' : '-translate-y-full' } justify-between bg-white py-4 font-serif font-light text-gray-800 md:px-8 dark:bg-[#121212] dark:text-gray-200 transition-transform duration-1000 ease-in-out"
+	class="sticky top-0 z-10 flex w-full items-center {isNavbarVisible
+		? 'translate-y-0'
+		: '-translate-y-full'} justify-between bg-white py-4 font-serif font-light text-gray-800 transition-transform duration-1000 ease-in-out md:px-8 dark:bg-[#121212] dark:text-gray-200"
 	id="nav"
 	aria-label="Main navigation"
 >
@@ -157,9 +156,7 @@
 			aria-current={$page.url.pathname === '/course' ? 'page' : undefined}
 		>
 			<span
-				class="{$page.url.pathname === '/course'
-					? 'inline-block border-b-2 border-slate-600'
-					: ''}"
+				class={$page.url.pathname === '/course' ? 'inline-block border-b-2 border-slate-600' : ''}
 			>
 				Course
 			</span>
@@ -171,9 +168,7 @@
 			aria-current={$page.url.pathname === '/rates' ? 'page' : undefined}
 		>
 			<span
-				class="{$page.url.pathname === '/rates'
-					? 'inline-block border-b-2 border-slate-600'
-					: ''}"
+				class={$page.url.pathname === '/rates' ? 'inline-block border-b-2 border-slate-600' : ''}
 			>
 				Rates
 			</span>
@@ -185,9 +180,7 @@
 			aria-current={$page.url.pathname === '/events' ? 'page' : undefined}
 		>
 			<span
-				class="{$page.url.pathname === '/events'
-					? 'inline-block border-b-2 border-slate-600'
-					: ''}"
+				class={$page.url.pathname === '/events' ? 'inline-block border-b-2 border-slate-600' : ''}
 			>
 				Events
 			</span>
@@ -199,9 +192,9 @@
 			aria-current={$page.url.pathname === '/tournaments' ? 'page' : undefined}
 		>
 			<span
-				class="{$page.url.pathname === '/tournaments'
+				class={$page.url.pathname === '/tournaments'
 					? 'inline-block border-b-2 border-slate-600'
-					: ''}"
+					: ''}
 			>
 				Tournaments
 			</span>
@@ -213,9 +206,9 @@
 			aria-current={$page.url.pathname === '/membership' ? 'page' : undefined}
 		>
 			<span
-				class="{$page.url.pathname === '/membership'
+				class={$page.url.pathname === '/membership'
 					? 'inline-block border-b-2 border-slate-600'
-					: ''}"
+					: ''}
 			>
 				Membership
 			</span>
@@ -227,9 +220,7 @@
 			aria-current={$page.url.pathname === '/team' ? 'page' : undefined}
 		>
 			<span
-				class="{$page.url.pathname === '/team'
-					? 'inline-block border-b-2 border-slate-600'
-					: ''}"
+				class={$page.url.pathname === '/team' ? 'inline-block border-b-2 border-slate-600' : ''}
 			>
 				Our Team
 			</span>
