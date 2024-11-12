@@ -23,7 +23,6 @@
 	// Simulate form submission for demonstration
 	async function handleSubmit(event) {
 		isLoading = true;
-
 	}
 
 	onMount(() => {
@@ -107,7 +106,7 @@
 			<!-- Newsletter Signup Form -->
 			<form
 				method="POST"
-				use:enhance						
+				use:enhance
 				onsubmit={handleSubmit}
 				class="flex flex-col items-center space-y-4"
 			>
@@ -118,7 +117,8 @@
 						placeholder="Enter your email"
 						bind:value={$form.email}
 						required
-						class="w-full rounded-md border border-gray-300 bg-white/90 px-4 py-2 text-gray-900 placeholder-gray-500 focus:border-blue-500 focus:outline-none dark:border-gray-600 dark:bg-gray-800/90 dark:text-gray-100 dark:placeholder-gray-400"
+						autocomplete="email"
+						class="w-full rounded-md border border-gray-300 bg-white/90 px-4 py-2 text-gray-900 placeholder-gray-500 focus:border-blue-500 focus:outline-none dark:border-gray-600 dark:bg-gray-800/90 dark:text-gray-100 dark:placeholder-gray-400 dark:focus:bg-gray-700/90"
 					/>
 
 					<button
@@ -152,3 +152,15 @@
 		</div>
 	</div>
 </section>
+
+<style>
+	input:-webkit-autofill {
+		-webkit-box-shadow: 0 0 0px 1000px #1a1a1a inset; /* Sets a custom background color for autofill */
+		-webkit-text-fill-color: #f1f1f1; /* Ensures text color stays consistent */
+	}
+
+	input:-webkit-autofill:focus {
+		-webkit-box-shadow: 0 0 0px 1000px #1a1a1a inset;
+		-webkit-text-fill-color: #f1f1f1;
+	}
+</style>
