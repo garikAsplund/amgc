@@ -32,35 +32,55 @@
 			<div class="order-1 space-y-4">
 				<h3 class="text-lg font-medium text-neutral-900 dark:text-neutral-300">Contact</h3>
 				<div class="space-y-4">
-					<a
-						href="tel:541-426-3246"
-						class="flex items-center gap-2 transition-colors hover:text-neutral-900 md:hidden dark:hover:text-neutral-300"
-					>
-						<Phone size={18} />
-						<span>(541) 426-3246</span>
-					</a>
-					<div class="hidden items-center gap-2 transition-colors md:flex">
-						<Phone size={18} />
-						<span>(541) 426-3246</span>
-					</div>
-					<a
-						href="https://maps.google.com/?q=66098+Golf+Course+Rd+Enterprise+OR+97828"
-						target="_blank"
-						rel="noopener noreferrer"
-						class="flex items-start gap-2 transition-colors hover:text-neutral-900 dark:hover:text-neutral-300"
-					>
-						<MapPin size={18} class="mt-1 flex-shrink-0" />
-						<span>
-							66098 Golf Course Rd<br />
-							Enterprise, OR 97828
-						</span>
-					</a>
-					<div class="flex flex-shrink-0 items-center gap-2 transition-colors">
-						<Mail size={18} class="mt-1 flex-shrink-0" />
-						<span>golfalpinemeadows@gmail.com</span>
-					</div>
+				  <!-- Phone number for mobile -->
+				  <div
+					tabindex="0"
+					role="button"
+					aria-label="Phone number: (541) 426-3246"
+					class="flex items-center gap-2 transition-colors hover:text-neutral-900 md:hidden dark:hover:text-neutral-300"
+				  >
+					<Phone size={18} />
+					<span>(541) 426-3246</span>
+				  </div>
+			  
+				  <!-- Phone number for larger screens -->
+				  <div
+					tabindex="0"
+					role="button"
+					aria-label="Phone number: (541) 426-3246"
+					class="hidden items-center gap-2 transition-colors md:flex"
+				  >
+					<Phone size={18} />
+					<span>(541) 426-3246</span>
+				  </div>
+			  
+				  <!-- Address link for navigation -->
+				  <a
+					href="https://maps.google.com/?q=66098+Golf+Course+Rd+Enterprise+OR+97828"
+					target="_blank"
+					rel="noopener noreferrer"
+					class="flex items-start gap-2 transition-colors hover:text-neutral-900 dark:hover:text-neutral-300"
+				  >
+					<MapPin size={18} class="mt-1 flex-shrink-0" />
+					<span>
+					  66098 Golf Course Rd<br />
+					  Enterprise, OR 97828
+					</span>
+				  </a>
+			  
+				  <!-- Email address -->
+				  <div
+					tabindex="0"
+					role="button"
+					aria-label="Email: golfalpinemeadows@gmail.com"
+					class="flex flex-shrink-0 items-center gap-2 transition-colors"
+				  >
+					<Mail size={18} class="mt-1 flex-shrink-0" />
+					<span>golfalpinemeadows@gmail.com</span>
+				  </div>
 				</div>
-			</div>
+			  </div>
+			  
 
 			<!-- Location -->
 			<!-- <div class="order-2 space-y-4 md:order-2">
