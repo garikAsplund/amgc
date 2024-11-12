@@ -13,14 +13,21 @@
 			class="grid grid-cols-1 justify-evenly gap-12 pl-8 text-neutral-600 md:grid-cols-3 lg:grid-cols-4 dark:text-neutral-400"
 		>
 			<!-- Logo -->
-			<a href="/" aria-label="Return to homepage" class="hover:opacity-80 w-fit h-fit hidden lg:block">
-				<div class="hidden pt-4 lg:block dark:hidden">
-					<LogoSvg />
-				</div>
-				<div class="hidden pt-4 lg:dark:block">
-					<LogoDark />
-				</div>
-			</a>
+			<div					class="hidden w-fit scale-150 items-center lg:flex"
+>
+				<a
+					href="/"
+					aria-label="Return to homepage"
+					class="hover:opacity-80"
+				>
+					<div class="hidden lg:block dark:hidden">
+						<LogoSvg />
+					</div>
+					<div class="hidden lg:dark:block">
+						<LogoDark />
+					</div>
+				</a>
+			</div>
 			<!-- Contact with integrated socials -->
 			<div class="order-1 space-y-4">
 				<h3 class="text-lg font-medium text-neutral-900 dark:text-neutral-300">Contact</h3>
