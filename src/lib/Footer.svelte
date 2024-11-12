@@ -1,5 +1,5 @@
 <script>
-	import { Phone, Mail, MapPin, Map, Clock } from 'lucide-svelte';
+	import { Phone, Mail, MapPin, Clock } from 'lucide-svelte';
 	import Socials from '$lib/Socials.svelte';
 	import LogoSvg from './svgs/LogoSVG.svelte';
 	import LogoDark from './svgs/LogoDark.svelte';
@@ -76,12 +76,6 @@
 					</div>
 				</div>
 			</div>
-
-			<!-- Location -->
-			<!-- <div class="order-2 space-y-4 md:order-2">
-				<h3 class="text-lg font-medium text-neutral-900 dark:text-neutral-300">Location</h3>
-				
-			</div> -->
 
 			<!-- Hours -->
 			<div class="order-2 space-y-4">
