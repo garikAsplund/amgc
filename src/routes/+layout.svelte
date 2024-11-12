@@ -3,6 +3,7 @@
 	import Nav from '$lib/Nav.svelte';
 	import '../app.css';
 	import { page } from '$app/stores';
+	import { injectAnalytics } from '@vercel/analytics/sveltekit';
 
 	let { children } = $props();
 </script>
