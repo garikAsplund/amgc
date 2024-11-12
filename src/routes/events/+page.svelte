@@ -1,4 +1,4 @@
-<script>
+<script>  
   const events = [
     {
       title: "Weddings",
@@ -48,7 +48,7 @@
         Call (541) 426-3246
       </a>
     </p>
-    <p class="hidden md:block text-lg dark:text-gray-300">
+    <p class="hidden md:block text-xl dark:text-gray-300">
       (541) 426-3246
     </p>
   </div>

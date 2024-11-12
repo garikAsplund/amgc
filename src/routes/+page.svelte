@@ -118,6 +118,8 @@
 						bind:value={$form.email}
 						required
 						autocomplete="email"
+						disabled={isLoading}
+						class:opacity-50={isLoading}
 						class="w-full rounded-md border border-gray-300 bg-white/90 px-4 py-2 text-gray-900 placeholder-gray-500 focus:border-blue-500 focus:outline-none dark:border-gray-600 dark:bg-gray-800/90 dark:text-gray-100 dark:placeholder-gray-400 dark:focus:bg-gray-700/90"
 					/>
 
