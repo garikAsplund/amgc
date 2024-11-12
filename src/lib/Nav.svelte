@@ -33,13 +33,18 @@
 
 <svelte:window on:scroll={handleScroll} />
 
+<div class="fixed top-0 left-0 right-0 -z-20 bg-white dark:bg-[#121212] h-48" >
+
+</div>
+
 <nav
-	class="sticky top-0 z-10 flex w-full items-center {isNavbarVisible
+	class="sticky top-0 z-10 flex flex-col w-full {isNavbarVisible
 		? 'translate-y-0'
-		: '-translate-y-full'} justify-between bg-white py-4 font-serif font-light text-gray-800 transition-transform duration-1000 ease-in-out md:px-8 dark:bg-[#121212] dark:text-gray-200"
+		: '-translate-y-full'} bg-white py-4 font-serif font-light text-gray-800 transition-transform duration-1000 ease-in-out md:px-8 dark:bg-[#121212] dark:text-gray-200"
 	id="nav"
 	aria-label="Main navigation"
 >
+<div class="flex w-full items-center justify-between">
 	<!-- Logo -->
 	<div class="z-10 flex-shrink-0">
 		<a href="/" aria-label="Return to homepage" class="hover:opacity-80" onclick={closeMenu}>
@@ -139,8 +144,7 @@
 			<Socials />
 		</div> -->
 	</div>
-</nav>
-
+</div>
 <!-- Mobile Dropdown Menu -->
 {#if isMenuOpen}
 	<div
@@ -227,3 +231,4 @@
 		</a>
 	</div>
 {/if}
+</nav>
