@@ -1,5 +1,4 @@
 <script lang="ts">
-	import Socials from '$lib/Socials.svelte';
 	import LogoSvg from '$lib/svgs/LogoSVG.svelte';
 	import LogoDark from '$lib/svgs/LogoDark.svelte';
 	import WeatherWidget from '$lib/WeatherWidget.svelte';
@@ -9,6 +8,18 @@
 	let isMenuOpen = $state(false);
 	let lastScrollY = $state(0);
 	let isNavbarVisible = $state(true);
+	let hasScrolled = $state(false);
+	let isNavigating = $state(false);
+
+    $effect(() => {
+        $page.url.pathname;
+        isNavbarVisible = true;
+        hasScrolled = false;
+        isNavigating = true;
+        setTimeout(() => {
+            isNavigating = false;
+        }, 0);
+    });
 
 	function toggleMenu() {
 		isMenuOpen = !isMenuOpen;
@@ -19,14 +30,17 @@
 	}
 
 	function handleScroll(event: Event) {
+		hasScrolled = true;
 		const currentScrollY = window.scrollY;
-
-		if (currentScrollY > lastScrollY && currentScrollY > 100) {
-			isNavbarVisible = false;
-		} else if (currentScrollY < lastScrollY || currentScrollY < 100) {
-			isNavbarVisible = true;
+		
+		if (hasScrolled) {
+			if (currentScrollY > lastScrollY && currentScrollY > 100) {
+				isNavbarVisible = false;
+			} else if (currentScrollY < lastScrollY || currentScrollY < 100) {
+				isNavbarVisible = true;
+			}
 		}
-
+		
 		lastScrollY = currentScrollY;
 	};
 </script>
@@ -38,11 +52,13 @@
 </div>
 
 <nav
-	class="sticky top-0 z-10 flex flex-col w-full {isNavbarVisible
-		? 'translate-y-0'
-		: '-translate-y-full'} bg-white py-4 font-serif font-light text-gray-800 transition-transform duration-1000 ease-in-out md:px-8 dark:bg-[#121212] dark:text-gray-200"
-	id="nav"
-	aria-label="Main navigation"
+    class="sticky top-0 z-10 flex flex-col w-full {isNavbarVisible
+        ? 'translate-y-0'
+        : '-translate-y-full'} bg-white py-4 font-serif font-light text-gray-800 {isNavigating 
+        ? 'transition-none' 
+        : 'transition-transform duration-1000 ease-in-out'} md:px-8 dark:bg-[#121212] dark:text-gray-200"
+    id="nav"
+    aria-label="Main navigation"
 >
 <div class="flex w-full items-center justify-between">
 	<!-- Logo -->
