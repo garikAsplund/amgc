@@ -18,7 +18,7 @@
 				
 				<div class="space-y-4">
 					{#each month.events as event}
-						<div class="rounded-lg bg-white dark:bg-neutral-800/50 p-6 shadow-md transition-shadow hover:shadow-lg">
+						<div class="rounded-lg bg-white dark:bg-gray-800/50 p-6 shadow-md transition-shadow hover:shadow-lg">
 							<div class="space-y-2">
 								<h4 class="text-lg font-medium dark:text-gray-100">{event.name}</h4>
 								<p class="font-medium text-neutral-600 dark:text-gray-400">{event.date}</p>

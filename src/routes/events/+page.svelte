@@ -30,7 +30,7 @@
 
   <div class="grid md:grid-cols-3 gap-8">
     {#each events as event}
-      <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+      <div class="bg-white dark:bg-gray-800/50 p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
         <div class="text-4xl mb-4 text-center">{event.icon}</div>
         <h2 class="text-xl font-semibold mb-3 text-center dark:text-gray-200">{event.title}</h2>
         <p class="text-gray-600 dark:text-gray-400">{event.description}</p>

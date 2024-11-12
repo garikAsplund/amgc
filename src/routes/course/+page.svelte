@@ -26,7 +26,7 @@
 
 		<div class="mb-8 grid gap-6 grid-cols-1 sm:grid-cols-[2fr_repeat(3,_1fr)] md:grid-cols-[2fr_repeat(3,_1fr)]">
 			{#each stats as { label, value, isWide }}
-				<div class="rounded-lg bg-gray-50 dark:bg-gray-700 p-4">
+				<div class="rounded-lg bg-gray-50 dark:bg-gray-800/50 p-4">
 					<div class="text-sm text-gray-600 dark:text-gray-300">{label}</div>
 					<div class="text-xl font-semibold dark:text-gray-200">{value}</div>
 				</div>
