@@ -156,13 +156,15 @@
 </section>
 
 <style>
-	input:-webkit-autofill {
-		-webkit-box-shadow: 0 0 0px 1000px #1a1a1a inset; /* Sets a custom background color for autofill */
-		-webkit-text-fill-color: #f1f1f1; /* Ensures text color stays consistent */
-	}
+	@media (prefers-color-scheme: dark) {
+		input:-webkit-autofill {
+			-webkit-box-shadow: 0 0 0px 1000px #1a1a1a inset; /* Sets a custom background color for autofill */
+			-webkit-text-fill-color: #f1f1f1; /* Ensures text color stays consistent */
+		}
 
-	input:-webkit-autofill:focus {
-		-webkit-box-shadow: 0 0 0px 1000px #1a1a1a inset;
-		-webkit-text-fill-color: #f1f1f1;
+		input:-webkit-autofill:focus {
+			-webkit-box-shadow: 0 0 0px 1000px #1a1a1a inset;
+			-webkit-text-fill-color: #f1f1f1;
+		}
 	}
 </style>

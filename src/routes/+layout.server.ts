@@ -8,6 +8,7 @@ export const load: PageServerLoad = async () => {
 	const now = Date.now();
   
   if (cachedWeatherData && (now - lastFetched) < CACHE_TIME) {
+    console.log('Using cached weather data');
     return { weather: cachedWeatherData };
   }
 
@@ -19,7 +20,8 @@ export const load: PageServerLoad = async () => {
     const response = await fetch(
       `https://api.openweathermap.org/data/2.5/weather?lat=${LATITUDE}&lon=${LONGITUDE}&appid=${API_KEY}&units=imperial`
     );
-	  const data = await response.json();
+    const data = await response.json();
+    console.log('Fetched fresh weather data');
 
     cachedWeatherData = {
       temp: Math.round(data.main.temp),
