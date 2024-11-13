@@ -3,19 +3,22 @@
 	import Nav from '$lib/Nav.svelte';
 	import '../app.css';
 	import { page } from '$app/stores';
+	import { dev } from '$app/environment';
 	import { injectAnalytics } from '@vercel/analytics/sveltekit';
+
+	injectAnalytics({ mode: dev ? 'development' : 'production' });
 
 	let { children } = $props();
 </script>
 
-<div class="flex h-full min-h-screen w-full flex-col ">
+<div class="flex h-full min-h-screen w-full flex-col">
 	<Nav />
 	<div
-		class="inset-0 relative w-full flex-grow overflow-hidden overflow-x-hidden
+		class="relative inset-0 w-full flex-grow overflow-hidden overflow-x-hidden
 		{$page.url.pathname === '/' ? '' : 'dark:bg-[#121212]'}"
 	>
 		<!-- Wrapper for children to ensure they stay within viewport on mobile -->
-		<div class="w-full h-full overflow-hidden">
+		<div class="h-full w-full overflow-hidden">
 			{@render children()}
 		</div>
 	</div>
