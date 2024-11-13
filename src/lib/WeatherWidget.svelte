@@ -27,10 +27,10 @@
 	href="https://www.google.com/search?q=enterprise+or+weather&sourceid=chrome&ie=UTF-8"
 	target="_blank"
 	rel="noopener"
-	class="flex items-center gap-2 p-2 hover:opacity-75"
+	class="flex items-center gap-2 p-2 hover:opacity-75 z-20"
 >
 	{#if $page.data.weather}
 		<span class="text-2xl">{weatherEmojis[$page.data.weather.icon]}</span>
-		<span class=" opacity-80">{$page.data.weather.temp}°</span>
+		<span class="opacity-80">{$page.data.weather.temp}°</span>
 	{/if}
 </a>
