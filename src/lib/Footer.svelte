@@ -3,6 +3,7 @@
 	import Socials from '$lib/Socials.svelte';
 	import LogoSvg from './svgs/LogoSVG.svelte';
 	import LogoDark from './svgs/LogoDark.svelte';
+	import Watermark from './Watermark.svelte';
 </script>
 
 <footer
@@ -136,5 +137,6 @@
 		<div class="pt-8 dark:text-neutral-300">
 			<Socials />
 		</div>
+		<Watermark />
 	</div>
 </footer>
