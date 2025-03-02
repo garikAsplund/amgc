@@ -5,8 +5,7 @@
   }
 
   const executiveBoard: BoardMember[] = [
-    { position: "Board President", name: "Bill Williams" },
-    { position: "Board Vice President", name: "Ryan Dragoo" },
+    { position: "Board President", name: "Ryan Dragoo" },
     { position: "Board Vice President", name: "Joshua Nash" },
   ];
 
