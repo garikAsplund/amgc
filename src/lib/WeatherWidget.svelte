@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { page } from '$app/stores';
+	import { page } from '$app/state';
 
 	const weatherEmojis = {
 		'01d': '☀️',
@@ -29,8 +29,8 @@
 	rel="noopener"
 	class="flex items-center gap-2 p-2 hover:opacity-75 z-20"
 >
-	{#if $page.data.weather}
-		<span class="text-2xl">{weatherEmojis[$page.data.weather.icon]}</span>
-		<span class="opacity-80">{$page.data.weather.temp}°</span>
+	{#if page.data.weather}
+		<span class="text-2xl">{weatherEmojis[page.data.weather.icon]}</span>
+		<span class="opacity-80">{page.data.weather.temp}°</span>
 	{/if}
 </a>

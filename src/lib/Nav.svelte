@@ -2,17 +2,19 @@
 	import LogoSvg from '$lib/svgs/LogoSVG.svelte';
 	import LogoDark from '$lib/svgs/LogoDark.svelte';
 	import WeatherWidget from '$lib/WeatherWidget.svelte';
-	import { page } from '$app/stores';
+	import { page } from '$app/state';
 	import { ChevronDown, X } from 'lucide-svelte';
+	import { onMount } from 'svelte';
 
 	let isMenuOpen = $state(false);
 	let lastScrollY = $state(0);
 	let isNavbarVisible = $state(true);
 	let hasScrolled = $state(false);
 	let isNavigating = $state(false);
+	let menuNode: HTMLDivElement | undefined = $state();
 
 	$effect(() => {
-		$page.url.pathname;
+		page.url.pathname;
 		isNavbarVisible = true;
 		hasScrolled = false;
 		isNavigating = true;
@@ -43,6 +45,20 @@
 
 		lastScrollY = currentScrollY;
 	}
+
+	onMount(() => {
+		const handleClickOutside = (event: MouseEvent) => {
+			if (isMenuOpen && menuNode && !menuNode.contains(event.target as Node)) {
+				isMenuOpen = false;
+			}
+		};
+
+		document.addEventListener('mousedown', handleClickOutside);
+
+		return () => {
+			document.removeEventListener('mousedown', handleClickOutside);
+		};
+	});
 </script>
 
 <svelte:window on:scroll={handleScroll} />
@@ -54,7 +70,7 @@
 		? 'translate-y-0'
 		: '-translate-y-full'} bg-white py-4 font-serif font-light text-gray-800 {isNavigating
 		? 'transition-none'
-		: 'transition-transform duration-1000 ease-in-out'} md:px-8 pr-4 dark:bg-[#121212] dark:text-gray-200"
+		: 'transition-transform duration-1000 ease-in-out'} pr-4 md:px-8 dark:bg-[#121212] dark:text-gray-200"
 	id="nav"
 	aria-label="Main navigation"
 >
@@ -79,55 +95,55 @@
 		>
 			<a
 				href="/course"
-				class="p-4 hover:opacity-75 {$page.url.pathname === '/course'
+				class="p-4 hover:opacity-75 {page.url.pathname === '/course'
 					? 'border-b-2 border-slate-600'
 					: ''}"
-				aria-current={$page.url.pathname === '/course' ? 'page' : undefined}
+				aria-current={page.url.pathname === '/course' ? 'page' : undefined}
 			>
 				Course
 			</a>
 			<a
 				href="/rates"
-				class="p-4 hover:opacity-75 {$page.url.pathname === '/rates'
+				class="p-4 hover:opacity-75 {page.url.pathname === '/rates'
 					? 'border-b-2 border-slate-600'
 					: ''}"
-				aria-current={$page.url.pathname === '/rates' ? 'page' : undefined}
+				aria-current={page.url.pathname === '/rates' ? 'page' : undefined}
 			>
 				Rates
 			</a>
 			<a
 				href="/events"
-				class="p-4 hover:opacity-75 {$page.url.pathname === '/events'
+				class="p-4 hover:opacity-75 {page.url.pathname === '/events'
 					? 'border-b-2 border-slate-600'
 					: ''}"
-				aria-current={$page.url.pathname === '/events' ? 'page' : undefined}
+				aria-current={page.url.pathname === '/events' ? 'page' : undefined}
 			>
 				Events
 			</a>
 			<a
 				href="/tournaments"
-				class="p-4 hover:opacity-75 {$page.url.pathname === '/tournaments'
+				class="p-4 hover:opacity-75 {page.url.pathname === '/tournaments'
 					? 'border-b-2 border-slate-600'
 					: ''}"
-				aria-current={$page.url.pathname === '/tournaments' ? 'page' : undefined}
+				aria-current={page.url.pathname === '/tournaments' ? 'page' : undefined}
 			>
 				Tournaments
 			</a>
 			<a
 				href="/membership"
-				class="p-4 hover:opacity-75 {$page.url.pathname === '/membership'
+				class="p-4 hover:opacity-75 {page.url.pathname === '/membership'
 					? 'border-b-2 border-slate-600'
 					: ''}"
-				aria-current={$page.url.pathname === '/membership' ? 'page' : undefined}
+				aria-current={page.url.pathname === '/membership' ? 'page' : undefined}
 			>
 				Membership
 			</a>
 			<a
 				href="/team"
-				class="p-4 hover:opacity-75 {$page.url.pathname === '/team'
+				class="p-4 hover:opacity-75 {page.url.pathname === '/team'
 					? 'border-b-2 border-slate-600'
 					: ''}"
-				aria-current={$page.url.pathname === '/team' ? 'page' : undefined}
+				aria-current={page.url.pathname === '/team' ? 'page' : undefined}
 			>
 				Our Team
 			</a>
@@ -153,7 +169,7 @@
 
 		<!-- Weather and Socials -->
 		<div class="flex items-center space-x-4" aria-label="Utilities">
-				<WeatherWidget />
+			<WeatherWidget />
 		</div>
 	</div>
 	<!-- Mobile Dropdown Menu -->
@@ -163,15 +179,16 @@
 			id="mobile-menu"
 			role="navigation"
 			aria-label="Mobile menu"
+			bind:this={menuNode}
 		>
 			<a
 				href="/course"
 				class="w-full p-4 text-center text-lg hover:opacity-75"
 				onclick={closeMenu}
-				aria-current={$page.url.pathname === '/course' ? 'page' : undefined}
+				aria-current={page.url.pathname === '/course' ? 'page' : undefined}
 			>
 				<span
-					class={$page.url.pathname === '/course' ? 'inline-block border-b-2 border-slate-600' : ''}
+					class={page.url.pathname === '/course' ? 'inline-block border-b-2 border-slate-600' : ''}
 				>
 					Course
 				</span>
@@ -180,10 +197,10 @@
 				href="/rates"
 				class="w-full p-4 text-center text-lg hover:opacity-75"
 				onclick={closeMenu}
-				aria-current={$page.url.pathname === '/rates' ? 'page' : undefined}
+				aria-current={page.url.pathname === '/rates' ? 'page' : undefined}
 			>
 				<span
-					class={$page.url.pathname === '/rates' ? 'inline-block border-b-2 border-slate-600' : ''}
+					class={page.url.pathname === '/rates' ? 'inline-block border-b-2 border-slate-600' : ''}
 				>
 					Rates
 				</span>
@@ -192,10 +209,10 @@
 				href="/events"
 				class="w-full p-4 text-center text-lg hover:opacity-75"
 				onclick={closeMenu}
-				aria-current={$page.url.pathname === '/events' ? 'page' : undefined}
+				aria-current={page.url.pathname === '/events' ? 'page' : undefined}
 			>
 				<span
-					class={$page.url.pathname === '/events' ? 'inline-block border-b-2 border-slate-600' : ''}
+					class={page.url.pathname === '/events' ? 'inline-block border-b-2 border-slate-600' : ''}
 				>
 					Events
 				</span>
@@ -204,10 +221,10 @@
 				href="/tournaments"
 				class="w-full p-4 text-center text-lg hover:opacity-75"
 				onclick={closeMenu}
-				aria-current={$page.url.pathname === '/tournaments' ? 'page' : undefined}
+				aria-current={page.url.pathname === '/tournaments' ? 'page' : undefined}
 			>
 				<span
-					class={$page.url.pathname === '/tournaments'
+					class={page.url.pathname === '/tournaments'
 						? 'inline-block border-b-2 border-slate-600'
 						: ''}
 				>
@@ -218,10 +235,10 @@
 				href="/membership"
 				class="w-full p-4 text-center text-lg hover:opacity-75"
 				onclick={closeMenu}
-				aria-current={$page.url.pathname === '/membership' ? 'page' : undefined}
+				aria-current={page.url.pathname === '/membership' ? 'page' : undefined}
 			>
 				<span
-					class={$page.url.pathname === '/membership'
+					class={page.url.pathname === '/membership'
 						? 'inline-block border-b-2 border-slate-600'
 						: ''}
 				>
@@ -232,10 +249,10 @@
 				href="/team"
 				class="w-full p-4 text-center text-lg hover:opacity-75"
 				onclick={closeMenu}
-				aria-current={$page.url.pathname === '/team' ? 'page' : undefined}
+				aria-current={page.url.pathname === '/team' ? 'page' : undefined}
 			>
 				<span
-					class={$page.url.pathname === '/team' ? 'inline-block border-b-2 border-slate-600' : ''}
+					class={page.url.pathname === '/team' ? 'inline-block border-b-2 border-slate-600' : ''}
 				>
 					Our Team
 				</span>
