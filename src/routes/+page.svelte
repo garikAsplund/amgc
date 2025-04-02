@@ -68,13 +68,18 @@
 		<h2 class="pt-8 font-serif text-xl text-gray-100 md:text-4xl">
 			Golf at the base of the Wallowa Mountains
 		</h2>
-
+		<div class="py-12">
+			<a
+				href="/membership"
+				class="inline-block transform rounded-md bg-white px-8 py-3 font-semibold text-emerald-800 shadow-md transition duration-300 ease-in-out hover:-translate-y-0.5 hover:bg-gray-100"
+			>
+				Pay Membership Dues
+			</a>
+		</div>
 		<p class="absolute bottom-0 py-16 font-serif text-xl text-gray-300 md:text-2xl">
-			Currently closed for the winter
+			Opening April 15!
 		</p>
 	</div>
 </section>
 
-<NewsletterForm {data}/>
-
-
+<NewsletterForm {data} />

@@ -1,4 +1,4 @@
-const site = 'https://golfalpinemeadows.vercel.app';
+const site = 'https://golfalpinemeadows.com';
 const pageFiles = import.meta.glob('/src/routes/**/+page.svelte', { eager: true });
 const pages = Object.keys(pageFiles)
         .map(path => {
