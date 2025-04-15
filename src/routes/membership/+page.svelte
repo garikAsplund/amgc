@@ -13,60 +13,60 @@
 			label: 'Family',
 			description:
 				'One or two adults and their dependent children ages 22 or younger who are living at home or are full-time students.',
-			fee: 775
+			fee: 798
 		},
 		{
 			value: 'new-family',
 			label: 'New Family',
 			description:
 				'A Family who has not been a member of Alpine Meadows Golf Club for the past two consecutive years.',
-			fee: 675
+			fee: 677
 		},
 		{
 			value: 'single',
 			label: 'Single',
 			description:
 				'A single individual age 18 or older who does not qualify for a Student Membership',
-			fee: 550
+			fee: 567
 		},
 		{
 			value: 'new-single',
 			label: 'New Single',
 			description:
 				'An Individual who has not been a member of Alpine Meadows Golf Club for the past two consecutive years.',
-			fee: 450
+			fee: 464
 		},
 		{
 			value: 'student',
 			label: 'Student',
 			description:
 				'A full-time student 14 and up to 22 years of age with Student I.D., and a resident of Wallowa County.',
-			fee: 100
+			fee: 103
 		},
 		{
 			value: 'youth',
 			label: 'Youth',
 			description: 'A youth who is 13 years and younger and a resident of Wallowa County.',
-			fee: 50
+			fee: 52
 		}
 	];
 
 	const additionalOptions = [
 		{
 			label: 'Handicap Fee',
-			alt: '$45 per person',
+			alt: '$46 per person',
 			type: 'quantity',
-			fee: 45,
+			fee: 46,
 			onIncrement: () => {
 				if (handicapQty < 10) {
 					handicapQty++;
-					additionalFee += 45;
+					additionalFee += 46;
 				}
 			},
 			onDecrement: () => {
 				if (handicapQty > 0) {
 					handicapQty = Math.max(0, handicapQty - 1);
-					additionalFee > 0 ? (additionalFee -= 45) : 0;
+					additionalFee > 0 ? (additionalFee -= 46) : 0;
 				}
 			}
 		},
@@ -74,30 +74,30 @@
 			label: 'Range Balls',
 			alt: 'Family',
 			type: 'toggle',
-			fee: 200
+			fee: 206
 		},
 		{
 			label: 'Range Balls',
 			alt: 'Individual',
 			type: 'toggle',
-			fee: 150
+			fee: 155
 		},
 		{
 			label: 'Cart Shed Rental',
 			alt: 'Member',
 			type: 'toggle',
-			fee: 300
+			fee: 309
 		},
 		{
 			label: 'Cart Shed Rental',
 			alt: 'Non-Member',
 			type: 'toggle',
-			fee: 400
+			fee: 412
 		},
 		{
 			label: 'Trail Fee Only',
 			type: 'toggle',
-			fee: 150
+			fee: 155
 		}
 	];
 

@@ -87,11 +87,11 @@ function formatCartItems(data: {
 				product_data: {
 					name: 'Handicap Fee'
 				},
-				unit_amount: 4500 // $45.00 in cents
+				unit_amount: 4600 // $46.00 in cents
 			},
 			quantity: data.handicapQty
 		});
-		totalAmount += 45 * data.handicapQty;
+		totalAmount += 46 * data.handicapQty;
 	}
 
 	// Add donation if any
