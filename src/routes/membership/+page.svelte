@@ -92,7 +92,7 @@
 			label: 'Cart Shed Rental',
 			alt: 'Non-Member',
 			type: 'toggle',
-			fee: 412
+			fee: 515
 		},
 		{
 			label: 'Trail Fee Only',
