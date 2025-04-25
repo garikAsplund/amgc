@@ -19,7 +19,7 @@ export async function POST({ request }) {
     // Email to the business
     const businessMailOptions = {
         from: 'garik.asplund@gmail.com',
-        to: 'garik.asplund@gmail.com', // golfalpinemeadows@gmail.com
+        to: 'garik.asplund@gmail.com, bethhough2@gmail.com', // golfalpinemeadows@gmail.com
         subject: 'New Subscriber to Newsletter',
         html: `
             <h2>Newsletter Subscriber</h2>
@@ -30,10 +30,11 @@ export async function POST({ request }) {
     // Email to the customer
     const customerMailOptions = {
         from: 'garik.asplund@gmail.com',
-        to: 'garik.asplund@gmail.com', // email
+        to: email,
         subject: 'Welcome to the Alpine Meadows Golf Course Newsletter',
         html: `
             <h2>Thank you for joining our newsletter!</h2>
+            <p>We'll send you our next update when it's ready.</p>
         `
     };
 
