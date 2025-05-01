@@ -34,11 +34,11 @@ export const tournaments = [
 	  month: "July",
 	  events: [
 		{
-		  date: "Monday, July 14th",
+		  date: "Monday, July 21st",
 		  name: "Eastside Seniors Golf Association Tournament",
 		},
 		{
-		  date: "Saturday & Sunday, July 19th & 20th",
+		  date: "Saturday, July 19th",
 		  name: "Elks Tournament",
 		},
 		{
@@ -85,7 +85,7 @@ export const tournaments = [
 	  month: "October",
 	  events: [
 		{
-		  date: "Monday, October 6th",
+		  date: "Monday, October 13th",
 		  name: "Firefighters Tournament",
 		},
 	  ],
