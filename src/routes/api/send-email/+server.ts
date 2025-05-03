@@ -19,7 +19,7 @@ export async function POST({ request }) {
     // Email to the business
     const businessMailOptions = {
         from: 'garik.asplund@gmail.com',
-        to: 'garik.asplund@gmail.com, bethhough2@gmail.com', // golfalpinemeadows@gmail.com
+        to: 'garik.asplund@gmail.com, sallybfarms@eoni.com', // golfalpinemeadows@gmail.com
         subject: 'New Subscriber to Newsletter',
         html: `
             <h2>Newsletter Subscriber</h2>
