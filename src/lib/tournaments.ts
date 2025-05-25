@@ -19,7 +19,7 @@ export const tournaments = [
 			//   details: "Registration Deadline is 6:00 p.m. June 7th",
 			// },
 			{
-				date: 'Sunday, June 14th',
+				date: 'Saturday, June 14th',
 				name: "Father's Day Memorial Tournament"
 			},
 			{
