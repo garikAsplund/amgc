@@ -4,7 +4,7 @@
 
 <section class="w-full h-full p-8">
 	<div class="max-w-2xl mx-auto space-y-8">
-		<h2 class="text-3xl font-serif text-center dark:text-gray-200">2024 Tournaments</h2>
+		<h2 class="text-3xl font-serif text-center dark:text-gray-200">2025 Tournaments</h2>
 
 		<!-- <div class="bg-red-100 dark:bg-red-900/30 border-l-4 border-red-500 p-4">
 			<p class="font-medium dark:text-gray-200">GOLF COURSE IS CLOSED TO OPEN PLAY ON DAYS OF TOURNAMENTS.</p>
