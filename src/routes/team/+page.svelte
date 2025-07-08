@@ -75,5 +75,8 @@
 				{/each}
 			</div>
 		</div>
+		<div class="mt-16 flex w-full justify-center">
+			<a href="/bylaws/2025.pdf" target="_blank" rel="noopener noreferrer" class=" dark:text-gray-300 underline underline-offset-4 hover:opacity-75 transition-all duration-300">Read our bylaws</a>
+		</div>
 	</div>
 </section>
