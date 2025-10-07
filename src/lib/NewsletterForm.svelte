@@ -82,7 +82,7 @@
 
     <div class="mt-4 text-center">
       <a
-        href="/newsletters/september-2025.pdf"
+        href="/newsletters/october-2025.pdf"
         target="_blank"
         class="text-base hover:underline dark:text-gray-100"
       >
