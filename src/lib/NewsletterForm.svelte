@@ -63,7 +63,7 @@ async function handleSubmit() {
         <!-- Honeypot -->
 				<input type="text" name="company" style="display:none;" tabindex="-1" autocomplete="off" />
 
-        <!-- reCAPTCHAv3 -->
+        <!-- reCAPTCHA v3 -->
 				<input
 					type="hidden"
 					name="g-recaptcha-response"
