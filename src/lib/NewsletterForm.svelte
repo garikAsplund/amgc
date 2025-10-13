@@ -52,7 +52,7 @@
 		<h2 class="text-center text-lg font-semibold dark:text-gray-100">
 			Sign up for our newsletter!
 		</h2>
-<div class="mt-4 text-center">
+		<div class="mt-4 text-center">
 			<a
 				href="/newsletters/october-2025.pdf"
 				target="_blank"
@@ -68,7 +68,14 @@
 		{:else}
 			<form method="POST" use:enhance onsubmit={handleSubmit} class="flex flex-col space-y-4">
 				<!-- Honeypot -->
-				<input type="text" name="company" style="display:none;" tabindex="-1" autocomplete="off" />
+				<input
+					type="text"
+					name="company"
+					style="display:none"
+					tabindex="-1"
+					autocomplete="off"
+					bind:value={$form.company}
+				/>
 
 				<!-- reCAPTCHA v3 -->
 				<input
@@ -136,8 +143,6 @@
 				apply.
 			</p>
 		{/if}
-
-		
 	</div>
 </section>
 

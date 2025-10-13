@@ -12,12 +12,17 @@ export async function POST({ request }) {
 		}
 	});
 
-	const { fullName, email } = formData.data;
+	const { fullName, email, company } = formData;
+
+	if (company && company.trim() !== '') {
+		console.warn('Bot submission blocked at email endpoint.');
+		return new Response(JSON.stringify({ error: 'Bot detected' }), { status: 400 });
+	}
 
 	// Email to the business
 	const businessMailOptions = {
 		from: 'garik.asplund@gmail.com',
-		to: 'garik.asplund@gmail.com', // golfalpinemeadows@gmail.com , sallybfarms@eoni.com
+		to: 'garik.asplund@gmail.com, sallybfarms@eoni.com', // golfalpinemeadows@gmail.com , 
 		subject: 'New Subscriber to Newsletter',
 		html: `
             <h2>Newsletter Subscriber</h2>
