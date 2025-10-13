@@ -1,51 +1,50 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-import SuperDebug, { superForm } from 'sveltekit-superforms';
-import { schema } from '$lib/schema';
-import { zod } from 'sveltekit-superforms/adapters';
-import { Mail } from 'lucide-svelte';
-import { PUBLIC_RECAPTCHA_SITE_KEY } from '$env/static/public';
+	import SuperDebug, { superForm } from 'sveltekit-superforms';
+	import { schema } from '$lib/schema';
+	import { zod } from 'sveltekit-superforms/adapters';
+	import { Mail } from 'lucide-svelte';
+	import { PUBLIC_RECAPTCHA_SITE_KEY } from '$env/static/public';
 
-let grecaptchaReady = $state(false);
+	let grecaptchaReady = $state(false);
 
-onMount(() => {
-  if (window.grecaptcha?.enterprise) {
-    grecaptchaReady = true;
-    return;
-  }
+	onMount(() => {
+		if (window.grecaptcha?.enterprise) {
+			grecaptchaReady = true;
+			return;
+		}
 
-  const script = document.createElement('script');
-  script.src = `https://www.google.com/recaptcha/enterprise.js?render=${PUBLIC_RECAPTCHA_SITE_KEY}`;
-  script.async = true;
-  script.defer = true;
-  script.onload = () => {
-    grecaptchaReady = true;
-  };
-  document.head.appendChild(script);
-});
+		const script = document.createElement('script');
+		script.src = `https://www.google.com/recaptcha/enterprise.js?render=${PUBLIC_RECAPTCHA_SITE_KEY}`;
+		script.async = true;
+		script.defer = true;
+		script.onload = () => {
+			grecaptchaReady = true;
+		};
+		document.head.appendChild(script);
+	});
 
-let { data } = $props();
-let isLoading = $state(false);
-let { form, errors, message, enhance } = superForm(data.form, {
-  validators: zod(schema),
-  schema,
-  dataType: 'json'
-});
+	let { data } = $props();
+	let isLoading = $state(false);
+	let { form, errors, message, enhance } = superForm(data.form, {
+		validators: zod(schema),
+		schema,
+		dataType: 'json'
+	});
 
-async function handleSubmit() {
-  if (!grecaptchaReady) {
-    console.warn('reCAPTCHA not ready yet');
-    return;
-  }
+	async function handleSubmit() {
+		if (!grecaptchaReady) {
+			console.warn('reCAPTCHA not ready yet');
+			return;
+		}
 
-  const token = await window.grecaptcha.enterprise.execute(
-    PUBLIC_RECAPTCHA_SITE_KEY,
-    { action: 'submit' }
-  );
+		const token = await window.grecaptcha.enterprise.execute(PUBLIC_RECAPTCHA_SITE_KEY, {
+			action: 'submit'
+		});
 
-  $form['g-recaptcha-response'] = token;
-  isLoading = true;
-}
+		$form['g-recaptcha-response'] = token;
+		isLoading = true;
+	}
 </script>
 
 <section class="flex flex-col items-center dark:bg-current">
@@ -53,24 +52,32 @@ async function handleSubmit() {
 		<h2 class="text-center text-lg font-semibold dark:text-gray-100">
 			Sign up for our newsletter!
 		</h2>
-
+<div class="mt-4 text-center">
+			<a
+				href="/newsletters/october-2025.pdf"
+				target="_blank"
+				class="text-base hover:underline dark:text-gray-100"
+			>
+				Or read our latest newsletter
+			</a>
+		</div>
 		{#if $message}
 			<p class="rounded bg-green-700 px-4 py-2 text-center text-sm text-white">
 				{$message}
 			</p>
 		{:else}
 			<form method="POST" use:enhance onsubmit={handleSubmit} class="flex flex-col space-y-4">
-        <!-- Honeypot -->
+				<!-- Honeypot -->
 				<input type="text" name="company" style="display:none;" tabindex="-1" autocomplete="off" />
 
-        <!-- reCAPTCHA v3 -->
+				<!-- reCAPTCHA v3 -->
 				<input
 					type="hidden"
 					name="g-recaptcha-response"
 					bind:value={$form['g-recaptcha-response']}
 				/>
 
-        <!-- Actual form -->
+				<!-- Actual form -->
 				<div class="flex flex-col">
 					<label for="fullName" class="mb-1 font-medium dark:text-gray-100"> Full Name </label>
 					<input
@@ -111,17 +118,26 @@ async function handleSubmit() {
 					{#if isLoading}Submitting...{:else}Subscribe{/if}
 				</button>
 			</form>
+			<p class="mt-3 text-left text-xs text-gray-500">
+				This site is protected by reCAPTCHA and the Google
+				<a
+					href="https://policies.google.com/privacy"
+					class="underline transition-colors hover:text-gray-700"
+					target="_blank"
+					rel="noopener noreferrer">Privacy Policy</a
+				>
+				and
+				<a
+					href="https://policies.google.com/terms"
+					class="underline transition-colors hover:text-gray-700"
+					target="_blank"
+					rel="noopener noreferrer">Terms of Service</a
+				>
+				apply.
+			</p>
 		{/if}
 
-		<div class="mt-4 text-center">
-			<a
-				href="/newsletters/october-2025.pdf"
-				target="_blank"
-				class="text-base hover:underline dark:text-gray-100"
-			>
-				Read our latest newsletter
-			</a>
-		</div>
+		
 	</div>
 </section>
 
