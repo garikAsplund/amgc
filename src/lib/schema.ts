@@ -10,5 +10,10 @@ export const schema = z.object({
 		.string()
 		.email('Please enter a valid email address')
 		.max(255, 'Email must be 255 characters or less')
-		.default('')
+		.default(''),
+	company: z
+		.string()
+		.email('Please enter a valid company name')
+		.max(255, 'Company must be 255 characters or less')
+		.default(''),
 });
