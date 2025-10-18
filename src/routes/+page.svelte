@@ -77,7 +77,7 @@
 			</a>
 		</div>
 		<p class="absolute bottom-0 py-16 font-serif text-xl text-gray-300 md:text-2xl">
-			AMGC closes October 15
+			Closed for the season
 		</p>
 	</div>
 </section>
