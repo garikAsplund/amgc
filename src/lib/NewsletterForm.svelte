@@ -5,43 +5,46 @@
   import { zod } from "sveltekit-superforms/adapters";
   import { PUBLIC_RECAPTCHA_SITE_KEY } from "$env/static/public";
 
-  let grecaptchaReady = $state(false);
   let formEl: HTMLFormElement | null = null;
   let { data } = $props();
   let isLoading = $state(false);
+  let grecaptchaReady = $state(false);
   let { form, errors, message, enhance } = superForm(data.form, {
     validators: zod(schema),
     dataType: "json"
   });
 
   onMount(() => {
-    const script = document.createElement("script");
-    script.src = `https://www.google.com/recaptcha/enterprise.js?render=${PUBLIC_RECAPTCHA_SITE_KEY}`;
-    script.async = true;
-    script.defer = true;
-    script.onload = () => (grecaptchaReady = true);
-    document.head.appendChild(script);
+    const s = document.createElement("script");
+    s.src = `https://www.google.com/recaptcha/enterprise.js?render=${PUBLIC_RECAPTCHA_SITE_KEY}`;
+    s.async = true;
+    s.defer = true;
+    s.onload = () => (grecaptchaReady = true);
+    document.head.appendChild(s);
   });
 
-  async function handleSubmit(event: SubmitEvent) {
-    event.preventDefault();
-
+  async function handleSubmit(e: SubmitEvent) {
+    e.preventDefault();
     if (!grecaptchaReady || !window.grecaptcha?.enterprise || !formEl) {
-      console.warn("Form or reCAPTCHA not ready yet");
+      console.warn("grecaptcha not ready");
       return;
     }
 
     isLoading = true;
 
+    // get token first
     const token = await window.grecaptcha.enterprise.execute(
       PUBLIC_RECAPTCHA_SITE_KEY,
       { action: "submit" }
     );
 
-    console.log("recaptcha token:", token);
-    $form["g-recaptcha-response"] = token;
+    // inject token into hidden input *directly on the form DOM element*
+    const hidden = formEl.querySelector<HTMLInputElement>(
+      'input[name="g-recaptcha-response"]'
+    );
+    if (hidden) hidden.value = token;
 
-    // now safely submit the persistent form
+    // now actually post the form
     formEl.submit();
   }
 </script>
