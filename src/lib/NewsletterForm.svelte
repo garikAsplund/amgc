@@ -38,7 +38,8 @@
 			hidden.value = token;
 
 			isLoading = true;
-			formEl.submit();
+			const evt = new Event('submit', { bubbles: true, cancelable: true });
+			formEl.dispatchEvent(evt);
 		};
 	});
 </script>
