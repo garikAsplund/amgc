@@ -4,7 +4,6 @@
 	import { schema } from '$lib/schema';
 	import { zod } from 'sveltekit-superforms/adapters';
 	import { PUBLIC_RECAPTCHA_SITE_KEY } from '$env/static/public';
-	import { $state } from 'svelte/reactivity';
 
 	let { data } = $props();
 	let { form, errors, message, enhance } = superForm(data.form, {
@@ -38,8 +37,7 @@
 			hidden.value = token;
 
 			isLoading = true;
-			const evt = new Event('submit', { bubbles: true, cancelable: true });
-			formEl.dispatchEvent(evt);
+			formEl.submit();
 		};
 	});
 </script>
