@@ -1,6 +1,6 @@
 <script lang="ts">
   import { onMount } from "svelte";
-  import SuperDebug, { superForm } from "sveltekit-superforms";
+  import { superForm } from "sveltekit-superforms";
   import { schema } from "$lib/schema";
   import { zod } from "sveltekit-superforms/adapters";
   import { PUBLIC_RECAPTCHA_SITE_KEY } from "$env/static/public";
@@ -8,7 +8,6 @@
   let grecaptchaReady = $state(false);
   let { data } = $props();
   let isLoading = $state(false);
-
   let { form, errors, message, enhance } = superForm(data.form, {
     validators: zod(schema),
     dataType: "json",
@@ -19,32 +18,25 @@
     script.src = `https://www.google.com/recaptcha/enterprise.js?render=${PUBLIC_RECAPTCHA_SITE_KEY}`;
     script.async = true;
     script.defer = true;
-    script.onload = () => {
-      grecaptchaReady = true;
-    };
+    script.onload = () => (grecaptchaReady = true);
     document.head.appendChild(script);
   });
 
-  async function handleSubmit(e: SubmitEvent) {
-    e.preventDefault();
+  async function handleSubmit(event: SubmitEvent) {
+    if (!grecaptchaReady || !window.grecaptcha?.enterprise) return;
 
-    if (!grecaptchaReady || !window.grecaptcha?.enterprise) {
-      console.warn("reCAPTCHA not ready yet");
-      return;
-    }
+    event.preventDefault(); // stop default just long enough to attach token
+    isLoading = true;
 
-    // Wait for token before submitting
     const token = await window.grecaptcha.enterprise.execute(
       PUBLIC_RECAPTCHA_SITE_KEY,
       { action: "submit" }
     );
 
     $form["g-recaptcha-response"] = token;
-    isLoading = true;
 
-    // Manually trigger the enhanced submit after token is attached
-    const formEl = e.currentTarget as HTMLFormElement;
-    await enhance(formEl).submit();
+    // resume the normal form submit once token is set
+    event.currentTarget?.submit();
   }
 </script>
 
