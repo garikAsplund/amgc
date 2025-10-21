@@ -21,7 +21,7 @@ export const actions = {
 		const form = await superValidate(raw, zod(schema));
 
 		// ⬅️ manually re‑inject the token so it's available
-		const token = raw.get('g-recaptcha-response') as string | null;
+		const token = raw.get('g-recaptcha-response') as string | undefined;
 		form.data['g-recaptcha-response'] = token;
 
 		console.log('raw token:', token);
