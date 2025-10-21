@@ -6,11 +6,12 @@
   import { PUBLIC_RECAPTCHA_SITE_KEY } from "$env/static/public";
 
   let grecaptchaReady = $state(false);
+  let formEl: HTMLFormElement | null = null;
   let { data } = $props();
   let isLoading = $state(false);
   let { form, errors, message, enhance } = superForm(data.form, {
     validators: zod(schema),
-    dataType: "json",
+    dataType: "json"
   });
 
   onMount(() => {
@@ -23,22 +24,26 @@
   });
 
   async function handleSubmit(event: SubmitEvent) {
-    if (!grecaptchaReady || !window.grecaptcha?.enterprise) return;
+    event.preventDefault();
 
-    event.preventDefault(); // stop default just long enough to attach token
+    if (!grecaptchaReady || !window.grecaptcha?.enterprise || !formEl) {
+      console.warn("Form or reCAPTCHA not ready yet");
+      return;
+    }
+
     isLoading = true;
 
     const token = await window.grecaptcha.enterprise.execute(
       PUBLIC_RECAPTCHA_SITE_KEY,
       { action: "submit" }
     );
-	console.log("recaptcha token:", token);
 
+    console.log("recaptcha token:", token);
     $form["g-recaptcha-response"] = token;
 
-    // resume the normal form submit once token is set
-const formEl = event.currentTarget as HTMLFormElement;
-  formEl.submit();  }
+    // now safely submit the persistent form
+    formEl.submit();
+  }
 </script>
 
 <section class="flex flex-col items-center dark:bg-current">
@@ -60,7 +65,7 @@ const formEl = event.currentTarget as HTMLFormElement;
 				{$message}
 			</p>
 		{:else}
-			<form method="POST" use:enhance onsubmit={handleSubmit} class="flex flex-col space-y-4">
+			<form bind:this={formEl} method="POST" use:enhance onsubmit={handleSubmit} class="flex flex-col space-y-4">
 				<!-- Honeypot -->
 				<input
 					type="text"
