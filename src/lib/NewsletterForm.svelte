@@ -11,52 +11,34 @@
 		dataType: 'json'
 	});
 
-	let grecaptchaReady = $state(false);
-	let formEl: HTMLFormElement | null = $state(null);
 	let isLoading = $state(false);
 
 	onMount(() => {
+		// Load the Enterprise JS once
 		const s = document.createElement('script');
 		s.src = `https://www.google.com/recaptcha/enterprise.js?render=${PUBLIC_RECAPTCHA_SITE_KEY}`;
 		s.async = true;
 		s.defer = true;
-		s.onload = () => (grecaptchaReady = true);
 		document.head.appendChild(s);
+
+		// Define the callback Google calls when the token is ready
+		(window as any).onSubmit = function onSubmit(token: string) {
+			console.log('reCAPTCHA token:', token);
+
+			// ensure the token is in your form
+			const form = document.getElementById('demo-form') as HTMLFormElement;
+			let hidden = form.querySelector<HTMLInputElement>('[name="g-recaptcha-response"]');
+			if (!hidden) {
+				hidden = document.createElement('input');
+				hidden.name = 'g-recaptcha-response';
+				hidden.type = 'hidden';
+				form.appendChild(hidden);
+			}
+			hidden.value = token;
+
+			form.submit();
+		};
 	});
-
-	async function handleSubmit(e: SubmitEvent) {
-		e.preventDefault();
-		const form = (e.currentTarget || e.target) as HTMLFormElement;
-
-		if (!grecaptchaReady || !window.grecaptcha) {
-			console.warn('reCAPTCHA not ready');
-			return;
-		}
-
-		isLoading = true;
-
-		// Wrap execute() inside grecaptcha.ready()
-		const token = await new Promise<string>((resolve) => {
-			window.grecaptcha.ready(async () => {
-				const t = await window.grecaptcha.enterprise.execute(PUBLIC_RECAPTCHA_SITE_KEY, {
-					action: 'submit'
-				});
-				resolve(t);
-			});
-		});
-
-		let hidden = form.querySelector<HTMLInputElement>('[name="g-recaptcha-response"]');
-		if (!hidden) {
-			hidden = document.createElement('input');
-			hidden.type = 'hidden';
-			hidden.name = 'g-recaptcha-response';
-			form.appendChild(hidden);
-		}
-		hidden.value = token;
-
-		form.action = '?/submit';
-		form.submit();
-	}
 </script>
 
 <section class="flex flex-col items-center dark:bg-current">
@@ -80,7 +62,6 @@
 		{:else}
 			<form
 				action="?/submit"
-				bind:this={formEl}
 				method="POST"
 				use:enhance
 				onsubmit={handleSubmit}
@@ -137,9 +118,12 @@
 				</div>
 
 				<button
-					type="submit"
 					disabled={isLoading}
-					class=" rounded-md bg-green-700 px-4 py-2 font-medium text-white transition hover:bg-green-600 dark:bg-green-700/80"
+					type="button"
+					data-sitekey={PUBLIC_RECAPTCHA_SITE_KEY}
+					data-callback="onSubmit"
+					data-action="submit"
+					class="g-recaptcha rounded-md bg-green-700 px-4 py-2 font-medium text-white transition hover:bg-green-600 dark:bg-green-700/80"
 				>
 					{#if isLoading}Submitting...{:else}Subscribe{/if}
 				</button>
