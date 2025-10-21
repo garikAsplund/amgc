@@ -71,7 +71,7 @@ export const actions = {
 				if (!verify.ok) {
 					const text = await verify.text();
 					console.error('reCAPTCHA verify failed:', verify.status, text);
-					return message(form, `Missing or invalid env? key starts with: ${RECAPTCHA_API_KEY?.slice(0, 8)}`, { status: 500 });
+					return message(form, `Missing or invalid env? key starts with: ${RECAPTCHA_SECRET_KEY?.slice(0, 8)}`, { status: 500 });
 				}
 
 				const result = await verify.json();
