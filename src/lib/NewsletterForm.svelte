@@ -32,12 +32,13 @@
       PUBLIC_RECAPTCHA_SITE_KEY,
       { action: "submit" }
     );
+	console.log("recaptcha token:", token);
 
     $form["g-recaptcha-response"] = token;
 
     // resume the normal form submit once token is set
-    event.currentTarget?.submit();
-  }
+const formEl = event.currentTarget as HTMLFormElement;
+  formEl.submit();  }
 </script>
 
 <section class="flex flex-col items-center dark:bg-current">
