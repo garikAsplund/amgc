@@ -54,7 +54,7 @@ export const actions = {
 			// }
 			try {
 				const verify = await fetch(
-					`https://recaptchaenterprise.googleapis.com/v3/projects/sup-email-463020/assessments?key=${RECAPTCHA_SECRET_KEY}`,
+					`https://recaptchaenterprise.googleapis.com/v1/projects/sup-email-463020/assessments?key=${RECAPTCHA_SECRET_KEY}`,
 					{
 						method: 'POST',
 						headers: { 'Content-Type': 'application/json' },
