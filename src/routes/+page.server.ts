@@ -37,8 +37,9 @@ export const actions = {
 					body: JSON.stringify({
 						event: {
 							token,
+							expectedAction: 'submit',
 							siteKey: PUBLIC_RECAPTCHA_SITE_KEY,
-							expectedAction: 'submit'
+
 						}
 					})
 				}
