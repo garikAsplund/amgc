@@ -26,26 +26,25 @@
 
 	async function handleSubmit(e: SubmitEvent) {
 		e.preventDefault();
+		const form = (e.currentTarget || e.target) as HTMLFormElement;
 
-		// use the actual form from the submit event
-		const form = (e.currentTarget || e.target) as HTMLFormElement | null;
-		if (!form) {
-			console.warn('❌ No form element on event');
-			return;
-		}
-
-		if (!grecaptchaReady || !window.grecaptcha?.enterprise) {
-			console.warn('⚠️ reCAPTCHA not ready yet');
+		if (!grecaptchaReady || !window.grecaptcha) {
+			console.warn('reCAPTCHA not ready');
 			return;
 		}
 
 		isLoading = true;
 
-		const token = await window.grecaptcha.enterprise.execute(PUBLIC_RECAPTCHA_SITE_KEY, {
-			action: 'submit'
+		// Wrap execute() inside grecaptcha.ready()
+		const token = await new Promise<string>((resolve) => {
+			window.grecaptcha.ready(async () => {
+				const t = await window.grecaptcha.enterprise.execute(PUBLIC_RECAPTCHA_SITE_KEY, {
+					action: 'submit'
+				});
+				resolve(t);
+			});
 		});
 
-		// make sure the hidden input exists and set its value
 		let hidden = form.querySelector<HTMLInputElement>('[name="g-recaptcha-response"]');
 		if (!hidden) {
 			hidden = document.createElement('input');
@@ -55,7 +54,7 @@
 		}
 		hidden.value = token;
 
-		form.action = '?/submit'; // named action on server
+		form.action = '?/submit';
 		form.submit();
 	}
 </script>
