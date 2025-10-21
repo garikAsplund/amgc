@@ -5,13 +5,15 @@
   import { zod } from "sveltekit-superforms/adapters";
   import { PUBLIC_RECAPTCHA_SITE_KEY } from "$env/static/public";
 
-  let grecaptchaReady = $state(false);
-  let isLoading = $state(false);
   let { data } = $props();
   let { form, errors, message, enhance } = superForm(data.form, {
     validators: zod(schema),
     dataType: "json"
   });
+
+  let grecaptchaReady = false;
+  let formEl: HTMLFormElement | null = null;
+  let isLoading = false;
 
   onMount(() => {
     const s = document.createElement("script");
@@ -22,25 +24,24 @@
     document.head.appendChild(s);
   });
 
-  async function handleSubmit(e: SubmitEvent) {
-    e.preventDefault(); // block native submit for a moment
+  async function handleSubmit(event: SubmitEvent) {
+    event.preventDefault();
 
-    // Get the form DOM node safely each time
-    const formEl = e.target as HTMLFormElement | null;
     if (!grecaptchaReady || !window.grecaptcha?.enterprise || !formEl) {
-      console.warn("Form element or reCAPTCHA not ready");
+      console.warn("⚠️ reCAPTCHA not ready");
       return;
     }
 
     isLoading = true;
 
+    // get fresh token from Google
     const token = await window.grecaptcha.enterprise.execute(
       PUBLIC_RECAPTCHA_SITE_KEY,
       { action: "submit" }
     );
-    console.log("recaptcha token:", token);
+    console.log("recaptcha token generated:", token);
 
-    // create or update hidden field directly on the form
+    // ensure hidden input is in real DOM and assign value
     let hidden = formEl.querySelector<HTMLInputElement>(
       'input[name="g-recaptcha-response"]'
     );
@@ -52,7 +53,7 @@
     }
     hidden.value = token;
 
-    // Now actually submit
+    // now post to backend
     formEl.submit();
   }
 </script>
@@ -76,7 +77,7 @@
 				{$message}
 			</p>
 		{:else}
-			<form method="POST" use:enhance onsubmit={handleSubmit} class="flex flex-col space-y-4">
+			<form bind:this={formEl} method="POST" use:enhance onsubmit={handleSubmit} class="flex flex-col space-y-4">
 				<!-- Honeypot -->
 				<input
 					type="text"
