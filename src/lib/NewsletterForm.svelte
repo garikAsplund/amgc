@@ -4,6 +4,7 @@
 	import { schema } from '$lib/schema';
 	import { zod } from 'sveltekit-superforms/adapters';
 	import { PUBLIC_RECAPTCHA_SITE_KEY } from '$env/static/public';
+	import { $state } from 'svelte/reactivity';
 
 	let { data } = $props();
 	let { form, errors, message, enhance } = superForm(data.form, {
@@ -14,7 +15,7 @@
 	let isLoading = $state(false);
 
 	onMount(() => {
-		// Load the Enterprise JS once
+		// Load Enterprise JS
 		const s = document.createElement('script');
 		s.src = `https://www.google.com/recaptcha/enterprise.js?render=${PUBLIC_RECAPTCHA_SITE_KEY}`;
 		s.async = true;
@@ -22,41 +23,24 @@
 		document.head.appendChild(s);
 
 		// Define the callback Google calls when the token is ready
-		(window as any).onSubmit = function onSubmit(token: string) {
+		(window as any).onRecaptchaSubmit = (token: string) => {
 			console.log('reCAPTCHA token:', token);
+			const formEl = document.getElementById('newsletter-form') as HTMLFormElement;
+			if (!formEl) return;
 
-			// ensure the token is in your form
-			const form = document.getElementById('demo-form') as HTMLFormElement;
-			let hidden = form.querySelector<HTMLInputElement>('[name="g-recaptcha-response"]');
+			let hidden = formEl.querySelector<HTMLInputElement>('[name="g-recaptcha-response"]');
 			if (!hidden) {
 				hidden = document.createElement('input');
 				hidden.name = 'g-recaptcha-response';
 				hidden.type = 'hidden';
-				form.appendChild(hidden);
+				formEl.appendChild(hidden);
 			}
 			hidden.value = token;
 
-			form.submit();
+			isLoading = true;
+			formEl.submit();
 		};
 	});
-
-	function onSubmit(token: string) {
-		// This runs automatically after Google gives you a token.
-		const form = document.getElementById('demo-form') as HTMLFormElement;
-
-		let hidden = form.querySelector<HTMLInputElement>('[name="g-recaptcha-response"]');
-		if (!hidden) {
-			hidden = document.createElement('input');
-			hidden.type = 'hidden';
-			hidden.name = 'g-recaptcha-response';
-			form.appendChild(hidden);
-		}
-		hidden.value = token;
-
-		form.action = '?/submit'; // your named server action
-		form.method = 'POST';
-		form.submit();
-	}
 </script>
 
 <section class="flex flex-col items-center dark:bg-current">
@@ -64,21 +48,14 @@
 		<h2 class="text-center text-lg font-semibold dark:text-gray-100">
 			Sign up for our newsletter!
 		</h2>
-		<div class="mt-4 text-center">
-			<a
-				href="/newsletters/october-2025.pdf"
-				target="_blank"
-				class="text-base hover:underline dark:text-gray-100"
-			>
-				Or read our latest newsletter
-			</a>
-		</div>
+
 		{#if $message}
 			<p class="rounded bg-green-700 px-4 py-2 text-center text-sm text-white">
 				{$message}
 			</p>
 		{:else}
 			<form
+				id="newsletter-form"
 				action="?/submit"
 				method="POST"
 				use:enhance
@@ -94,23 +71,21 @@
 					bind:value={$form.company}
 				/>
 
-				<!-- reCAPTCHA v3 -->
 				<input
 					type="hidden"
 					name="g-recaptcha-response"
 					bind:value={$form['g-recaptcha-response']}
 				/>
 
-				<!-- Actual form -->
 				<div class="flex flex-col">
-					<label for="fullName" class="mb-1 font-medium dark:text-gray-100"> Full Name </label>
+					<label for="fullName" class="mb-1 font-medium dark:text-gray-100">Full Name</label>
 					<input
 						id="fullName"
 						name="fullName"
 						bind:value={$form.fullName}
 						required
 						disabled={isLoading}
-						class="rounded-md border bg-white/90 px-3 py-2 focus:border-blue-500 dark:border-gray-600 dark:bg-gray-800/90 dark:text-gray-100"
+						class="rounded-md border px-3 py-2"
 					/>
 					{#if errors.fullName}
 						<p class="mt-1 text-sm text-red-600">{errors.fullName}</p>
@@ -118,7 +93,7 @@
 				</div>
 
 				<div class="flex flex-col">
-					<label for="email" class="mb-1 font-medium dark:text-gray-100"> Email Address </label>
+					<label for="email" class="mb-1 font-medium dark:text-gray-100">Email Address</label>
 					<input
 						id="email"
 						type="email"
@@ -127,7 +102,7 @@
 						required
 						autocomplete="email"
 						disabled={isLoading}
-						class="rounded-md border bg-white/90 px-3 py-2 focus:border-blue-500 dark:border-gray-600 dark:bg-gray-800/90 dark:text-gray-100"
+						class="rounded-md border px-3 py-2"
 					/>
 					{#if errors.email}
 						<p class="mt-1 text-sm text-red-600">{errors.email}</p>
@@ -135,16 +110,17 @@
 				</div>
 
 				<button
-					disabled={isLoading}
-					type="submit"
+					class="g-recaptcha rounded-md bg-green-700 px-4 py-2 font-medium text-white hover:bg-green-600"
+					type="button"
 					data-sitekey={PUBLIC_RECAPTCHA_SITE_KEY}
-					data-callback="onSubmit"
+					data-callback="onRecaptchaSubmit"
 					data-action="submit"
-					class="g-recaptcha rounded-md bg-green-700 px-4 py-2 font-medium text-white transition hover:bg-green-600 dark:bg-green-700/80"
+					disabled={isLoading}
 				>
 					{#if isLoading}Submitting...{:else}Subscribe{/if}
 				</button>
 			</form>
+
 			<p class="mt-3 text-left text-xs text-gray-500">
 				This site is protected by reCAPTCHA and the Google
 				<a
