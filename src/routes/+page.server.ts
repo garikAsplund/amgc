@@ -29,22 +29,23 @@ export const actions = {
 		if (!dev) {
 			const token = form.data['g-recaptcha-response'];
 
-			// const verify = await fetch(
-			// 	`https://recaptchaenterprise.googleapis.com/v1/projects/sup-email-463020/assessments?key=${RECAPTCHA_SECRET_KEY}`,
-			// 	{
-			// 		method: 'POST',
-			// 		headers: { 'Content-Type': 'application/json' },
-			// 		body: JSON.stringify({
-			// 			event: {
-			// 				token,
-			// 				siteKey: PUBLIC_RECAPTCHA_SITE_KEY,
-			// 				expectedAction: 'submit'
-			// 			}
-			// 		})
-			// 	}
-			// );
+			const verify = await fetch(
+				`https://recaptchaenterprise.googleapis.com/v1/projects/sup-email-463020/assessments?key=${RECAPTCHA_SECRET_KEY}`,
+				{
+					method: 'POST',
+					headers: { 'Content-Type': 'application/json' },
+					body: JSON.stringify({
+						event: {
+							token,
+							siteKey: PUBLIC_RECAPTCHA_SITE_KEY,
+							expectedAction: 'submit'
+						}
+					})
+				}
+			);
 
 			// const result = await verify.json();
+
 			// console.log('reCAPTCHA result:', JSON.stringify(result, null, 2));
 			// if (!result.tokenProperties?.valid) {
 			// 	// return message(form, 'ReCAPTCHA validation failed', { status: 400 });
@@ -52,42 +53,47 @@ export const actions = {
 			// 		status: 400
 			// 	});
 			// }
-			try {
-				const verify = await fetch(
-					`https://recaptchaenterprise.googleapis.com/v1/projects/sup-email-463020/assessments?key=${RECAPTCHA_SECRET_KEY}`,
-					{
-						method: 'POST',
-						headers: { 'Content-Type': 'application/json' },
-						body: JSON.stringify({
-							event: {
-								token,
-								expectedAction: 'submit',
-								siteKey: PUBLIC_RECAPTCHA_SITE_KEY
-							}
-						})
-					}
-				);
 
-				if (!verify.ok) {
-					const text = await verify.text();
-					console.error('reCAPTCHA verify failed:', verify.status, text);
-					return message(form, `Missing or invalid env? key starts with: ${RECAPTCHA_SECRET_KEY?.slice(0, 8)}`, { status: 500 });
-				}
+			const resText = await verify.text();
+			return message(form, `Google says: ${verify.status} → ${resText}`, { status: 400 });
 
-				const result = await verify.json();
-				console.log('Verification result:', JSON.stringify(result, null, 2));
+			// OR
+			// try {
+			// 	const verify = await fetch(
+			// 		`https://recaptchaenterprise.googleapis.com/v1/projects/sup-email-463020/assessments?key=${RECAPTCHA_SECRET_KEY}`,
+			// 		{
+			// 			method: 'POST',
+			// 			headers: { 'Content-Type': 'application/json' },
+			// 			body: JSON.stringify({
+			// 				event: {
+			// 					token,
+			// 					expectedAction: 'submit',
+			// 					siteKey: PUBLIC_RECAPTCHA_SITE_KEY
+			// 				}
+			// 			})
+			// 		}
+			// 	);
 
-				if (!result.tokenProperties?.valid) {
-					return message(
-						form,
-						`ReCAPTCHA validation failed: ${result.tokenProperties.invalidReason}`,
-						{ status: 400 }
-					);
-				}
-			} catch (err) {
-				console.error('Verification crash:', err);
-				return message(form, 'Internal verification error', { status: 500 });
-			}
+			// 	if (!verify.ok) {
+			// 		const text = await verify.text();
+			// 		console.error('reCAPTCHA verify failed:', verify.status, text);
+			// 		return message(form, `Missing or invalid env? key starts with: ${RECAPTCHA_SECRET_KEY?.slice(0, 8)}`, { status: 500 });
+			// 	}
+
+			// 	const result = await verify.json();
+			// 	console.log('Verification result:', JSON.stringify(result, null, 2));
+
+			// 	if (!result.tokenProperties?.valid) {
+			// 		return message(
+			// 			form,
+			// 			`ReCAPTCHA validation failed: ${result.tokenProperties.invalidReason}`,
+			// 			{ status: 400 }
+			// 		);
+			// 	}
+			// } catch (err) {
+			// 	console.error('Verification crash:', err);
+			// 	return message(form, 'Internal verification error', { status: 500 });
+			// }
 		} else {
 			console.log('⚠️ Skipping reCAPTCHA validation in dev');
 		}
