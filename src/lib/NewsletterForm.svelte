@@ -39,6 +39,24 @@
 			form.submit();
 		};
 	});
+
+	function onSubmit(token: string) {
+		// This runs automatically after Google gives you a token.
+		const form = document.getElementById('demo-form') as HTMLFormElement;
+
+		let hidden = form.querySelector<HTMLInputElement>('[name="g-recaptcha-response"]');
+		if (!hidden) {
+			hidden = document.createElement('input');
+			hidden.type = 'hidden';
+			hidden.name = 'g-recaptcha-response';
+			form.appendChild(hidden);
+		}
+		hidden.value = token;
+
+		form.action = '?/submit'; // your named server action
+		form.method = 'POST';
+		form.submit();
+	}
 </script>
 
 <section class="flex flex-col items-center dark:bg-current">
@@ -64,7 +82,6 @@
 				action="?/submit"
 				method="POST"
 				use:enhance
-				onsubmit={handleSubmit}
 				class="flex flex-col space-y-4"
 			>
 				<!-- Honeypot -->
@@ -119,7 +136,7 @@
 
 				<button
 					disabled={isLoading}
-					type="button"
+					type="submit"
 					data-sitekey={PUBLIC_RECAPTCHA_SITE_KEY}
 					data-callback="onSubmit"
 					data-action="submit"
