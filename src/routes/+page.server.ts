@@ -29,28 +29,64 @@ export const actions = {
 		if (!dev) {
 			const token = form.data['g-recaptcha-response'];
 
-			const verify = await fetch(
-				`https://recaptchaenterprise.googleapis.com/v1/projects/sup-email-463020/assessments?key=${RECAPTCHA_SECRET_KEY}`,
-				{
-					method: 'POST',
-					headers: { 'Content-Type': 'application/json' },
-					body: JSON.stringify({
-						event: {
-							token,
-							siteKey: PUBLIC_RECAPTCHA_SITE_KEY,
-							expectedAction: 'submit'
-						}
-					})
-				}
-			);
+			// const verify = await fetch(
+			// 	`https://recaptchaenterprise.googleapis.com/v1/projects/sup-email-463020/assessments?key=${RECAPTCHA_SECRET_KEY}`,
+			// 	{
+			// 		method: 'POST',
+			// 		headers: { 'Content-Type': 'application/json' },
+			// 		body: JSON.stringify({
+			// 			event: {
+			// 				token,
+			// 				siteKey: PUBLIC_RECAPTCHA_SITE_KEY,
+			// 				expectedAction: 'submit'
+			// 			}
+			// 		})
+			// 	}
+			// );
 
-			const result = await verify.json();
-			console.log('reCAPTCHA result:', JSON.stringify(result, null, 2));
-			if (!result.tokenProperties?.valid) {
-				// return message(form, 'ReCAPTCHA validation failed', { status: 400 });
-				return message(form, `Recaptcha failed: ${result.tokenProperties.invalidReason}`, {
-					status: 400
-				});
+			// const result = await verify.json();
+			// console.log('reCAPTCHA result:', JSON.stringify(result, null, 2));
+			// if (!result.tokenProperties?.valid) {
+			// 	// return message(form, 'ReCAPTCHA validation failed', { status: 400 });
+			// 	return message(form, `Recaptcha failed: ${result.tokenProperties.invalidReason}`, {
+			// 		status: 400
+			// 	});
+			// }
+			try {
+				const verify = await fetch(
+					`https://recaptchaenterprise.googleapis.com/v1/projects/sup-email-463020/assessments?key=${RECAPTCHA_SECRET_KEY}`,
+					{
+						method: 'POST',
+						headers: { 'Content-Type': 'application/json' },
+						body: JSON.stringify({
+							event: {
+								token: form.data['g-recaptcha-response'],
+								siteKey: PUBLIC_RECAPTCHA_SITE_KEY,
+								expectedAction: 'submit'
+							}
+						})
+					}
+				);
+
+				if (!verify.ok) {
+					const text = await verify.text();
+					console.error('reCAPTCHA verify failed:', verify.status, text);
+					return message(form, 'Google verification error', { status: 500 });
+				}
+
+				const result = await verify.json();
+				console.log('Verification result:', JSON.stringify(result, null, 2));
+
+				if (!result.tokenProperties?.valid) {
+					return message(
+						form,
+						`ReCAPTCHA validation failed: ${result.tokenProperties.invalidReason}`,
+						{ status: 400 }
+					);
+				}
+			} catch (err) {
+				console.error('Verification crash:', err);
+				return message(form, 'Internal verification error', { status: 500 });
 			}
 		} else {
 			console.log('⚠️ Skipping reCAPTCHA validation in dev');
