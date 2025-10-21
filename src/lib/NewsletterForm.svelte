@@ -5,10 +5,9 @@
   import { zod } from "sveltekit-superforms/adapters";
   import { PUBLIC_RECAPTCHA_SITE_KEY } from "$env/static/public";
 
-  let formEl: HTMLFormElement | null = $state(null);
-  let { data } = $props();
-  let isLoading = $state(false);
   let grecaptchaReady = $state(false);
+  let isLoading = $state(false);
+  let { data } = $props();
   let { form, errors, message, enhance } = superForm(data.form, {
     validators: zod(schema),
     dataType: "json"
@@ -24,27 +23,36 @@
   });
 
   async function handleSubmit(e: SubmitEvent) {
-    e.preventDefault();
+    e.preventDefault(); // block native submit for a moment
+
+    // Get the form DOM node safely each time
+    const formEl = e.target as HTMLFormElement | null;
     if (!grecaptchaReady || !window.grecaptcha?.enterprise || !formEl) {
-      console.warn("grecaptcha not ready");
+      console.warn("Form element or reCAPTCHA not ready");
       return;
     }
 
     isLoading = true;
 
-    // get token first
     const token = await window.grecaptcha.enterprise.execute(
       PUBLIC_RECAPTCHA_SITE_KEY,
       { action: "submit" }
     );
+    console.log("recaptcha token:", token);
 
-    // inject token into hidden input *directly on the form DOM element*
-    const hidden = formEl.querySelector<HTMLInputElement>(
+    // create or update hidden field directly on the form
+    let hidden = formEl.querySelector<HTMLInputElement>(
       'input[name="g-recaptcha-response"]'
     );
-    if (hidden) hidden.value = token;
+    if (!hidden) {
+      hidden = document.createElement("input");
+      hidden.type = "hidden";
+      hidden.name = "g-recaptcha-response";
+      formEl.appendChild(hidden);
+    }
+    hidden.value = token;
 
-    // now actually post the form
+    // Now actually submit
     formEl.submit();
   }
 </script>
@@ -68,7 +76,7 @@
 				{$message}
 			</p>
 		{:else}
-			<form bind:this={formEl} method="POST" use:enhance onsubmit={handleSubmit} class="flex flex-col space-y-4">
+			<form method="POST" use:enhance onsubmit={handleSubmit} class="flex flex-col space-y-4">
 				<!-- Honeypot -->
 				<input
 					type="text"
