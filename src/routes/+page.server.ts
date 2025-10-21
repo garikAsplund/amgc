@@ -45,9 +45,12 @@ export const actions = {
 			);
 
 			const result = await verify.json();
-			console.log(JSON.stringify(result, null, 2));
+			console.log('reCAPTCHA result:', JSON.stringify(result, null, 2));
 			if (!result.tokenProperties?.valid) {
-				return message(form, 'ReCAPTCHA validation failed', { status: 400 });
+				// return message(form, 'ReCAPTCHA validation failed', { status: 400 });
+				return message(form, `Recaptcha failed: ${result.tokenProperties.invalidReason}`, {
+					status: 400
+				});
 			}
 		} else {
 			console.log('⚠️ Skipping reCAPTCHA validation in dev');
