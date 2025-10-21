@@ -1,50 +1,51 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
-	import SuperDebug, { superForm } from 'sveltekit-superforms';
-	import { schema } from '$lib/schema';
-	import { zod } from 'sveltekit-superforms/adapters';
-	import { Mail } from 'lucide-svelte';
-	import { PUBLIC_RECAPTCHA_SITE_KEY } from '$env/static/public';
+  import { onMount } from "svelte";
+  import SuperDebug, { superForm } from "sveltekit-superforms";
+  import { schema } from "$lib/schema";
+  import { zod } from "sveltekit-superforms/adapters";
+  import { PUBLIC_RECAPTCHA_SITE_KEY } from "$env/static/public";
 
-	let grecaptchaReady = $state(false);
+  let grecaptchaReady = $state(false);
+  let { data } = $props();
+  let isLoading = $state(false);
 
-	onMount(() => {
-		if (window.grecaptcha?.enterprise) {
-			grecaptchaReady = true;
-			return;
-		}
+  let { form, errors, message, enhance } = superForm(data.form, {
+    validators: zod(schema),
+    dataType: "json",
+  });
 
-		const script = document.createElement('script');
-		script.src = `https://www.google.com/recaptcha/enterprise.js?render=${PUBLIC_RECAPTCHA_SITE_KEY}`;
-		script.async = true;
-		script.defer = true;
-		script.onload = () => {
-			grecaptchaReady = true;
-		};
-		document.head.appendChild(script);
-	});
+  onMount(() => {
+    const script = document.createElement("script");
+    script.src = `https://www.google.com/recaptcha/enterprise.js?render=${PUBLIC_RECAPTCHA_SITE_KEY}`;
+    script.async = true;
+    script.defer = true;
+    script.onload = () => {
+      grecaptchaReady = true;
+    };
+    document.head.appendChild(script);
+  });
 
-	let { data } = $props();
-	let isLoading = $state(false);
-	let { form, errors, message, enhance } = superForm(data.form, {
-		validators: zod(schema),
-		schema,
-		dataType: 'json'
-	});
+  async function handleSubmit(e: SubmitEvent) {
+    e.preventDefault();
 
-	async function handleSubmit() {
-		if (!grecaptchaReady) {
-			console.warn('reCAPTCHA not ready yet');
-			return;
-		}
+    if (!grecaptchaReady || !window.grecaptcha?.enterprise) {
+      console.warn("reCAPTCHA not ready yet");
+      return;
+    }
 
-		const token = await window.grecaptcha.enterprise.execute(PUBLIC_RECAPTCHA_SITE_KEY, {
-			action: 'submit'
-		});
+    // Wait for token before submitting
+    const token = await window.grecaptcha.enterprise.execute(
+      PUBLIC_RECAPTCHA_SITE_KEY,
+      { action: "submit" }
+    );
 
-		$form['g-recaptcha-response'] = token;
-		isLoading = true;
-	}
+    $form["g-recaptcha-response"] = token;
+    isLoading = true;
+
+    // Manually trigger the enhanced submit after token is attached
+    const formEl = e.currentTarget as HTMLFormElement;
+    await enhance(formEl).submit();
+  }
 </script>
 
 <section class="flex flex-col items-center dark:bg-current">
