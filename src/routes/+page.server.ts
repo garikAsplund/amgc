@@ -60,9 +60,9 @@ export const actions = {
 						headers: { 'Content-Type': 'application/json' },
 						body: JSON.stringify({
 							event: {
-								token: form.data['g-recaptcha-response'],
-								siteKey: PUBLIC_RECAPTCHA_SITE_KEY,
-								expectedAction: 'submit'
+								token,
+								expectedAction: 'submit',
+								siteKey: PUBLIC_RECAPTCHA_SITE_KEY
 							}
 						})
 					}
