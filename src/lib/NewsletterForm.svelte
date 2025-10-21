@@ -11,9 +11,9 @@
     dataType: "json"
   });
 
-  let grecaptchaReady = false;
-  let formEl: HTMLFormElement | null = null;
-  let isLoading = false;
+  let grecaptchaReady = $state(false);
+  let formEl: HTMLFormElement | null = $state(null);
+  let isLoading = $state(false);
 
   onMount(() => {
     const s = document.createElement("script");
