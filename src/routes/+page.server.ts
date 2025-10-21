@@ -14,6 +14,9 @@ export const load: PageServerLoad = async () => {
 
 export const actions = {
 	default: async ({ request, fetch }) => {
+		const raw = await request.formData();
+console.log("raw g-recaptcha-response:", raw.get("g-recaptcha-response"));
+
 		const form = await superValidate(request, zod(schema));
 		console.log('form.data:', form.data);
 		if (!form.valid) return fail(400, { form });
