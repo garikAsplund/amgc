@@ -5,7 +5,7 @@
   import { zod } from "sveltekit-superforms/adapters";
   import { PUBLIC_RECAPTCHA_SITE_KEY } from "$env/static/public";
 
-  let formEl: HTMLFormElement | null = null;
+  let formEl: HTMLFormElement | null = $state(null);
   let { data } = $props();
   let isLoading = $state(false);
   let grecaptchaReady = $state(false);
