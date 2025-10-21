@@ -13,7 +13,7 @@ export const load: PageServerLoad = async () => {
 };
 
 export const actions = {
-	default: async ({ request, fetch }) => {
+	submit: async ({ request, fetch }) => {
 		// read raw form once
 		const raw = await request.formData();
 
