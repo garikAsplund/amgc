@@ -1,61 +1,63 @@
 <script lang="ts">
-  import { onMount } from "svelte";
-  import { superForm } from "sveltekit-superforms";
-  import { schema } from "$lib/schema";
-  import { zod } from "sveltekit-superforms/adapters";
-  import { PUBLIC_RECAPTCHA_SITE_KEY } from "$env/static/public";
+	import { onMount } from 'svelte';
+	import { superForm } from 'sveltekit-superforms';
+	import { schema } from '$lib/schema';
+	import { zod } from 'sveltekit-superforms/adapters';
+	import { PUBLIC_RECAPTCHA_SITE_KEY } from '$env/static/public';
 
-  let { data } = $props();
-  let { form, errors, message, enhance } = superForm(data.form, {
-    validators: zod(schema),
-    dataType: "json"
-  });
+	let { data } = $props();
+	let { form, errors, message, enhance } = superForm(data.form, {
+		validators: zod(schema),
+		dataType: 'json'
+	});
 
-  let grecaptchaReady = $state(false);
-  let formEl: HTMLFormElement | null = $state(null);
-  let isLoading = $state(false);
+	let grecaptchaReady = $state(false);
+	let formEl: HTMLFormElement | null = $state(null);
+	let isLoading = $state(false);
 
-  onMount(() => {
-    const s = document.createElement("script");
-    s.src = `https://www.google.com/recaptcha/enterprise.js?render=${PUBLIC_RECAPTCHA_SITE_KEY}`;
-    s.async = true;
-    s.defer = true;
-    s.onload = () => (grecaptchaReady = true);
-    document.head.appendChild(s);
-  });
+	onMount(() => {
+		const s = document.createElement('script');
+		s.src = `https://www.google.com/recaptcha/enterprise.js?render=${PUBLIC_RECAPTCHA_SITE_KEY}`;
+		s.async = true;
+		s.defer = true;
+		s.onload = () => (grecaptchaReady = true);
+		document.head.appendChild(s);
+	});
 
-  async function handleSubmit(event: SubmitEvent) {
-    event.preventDefault();
+	async function handleSubmit(e: SubmitEvent) {
+		e.preventDefault();
 
-    if (!grecaptchaReady || !window.grecaptcha?.enterprise || !formEl) {
-      console.warn("⚠️ reCAPTCHA not ready");
-      return;
-    }
+		// use the actual form from the submit event
+		const form = (e.currentTarget || e.target) as HTMLFormElement | null;
+		if (!form) {
+			console.warn('❌ No form element on event');
+			return;
+		}
 
-    isLoading = true;
+		if (!grecaptchaReady || !window.grecaptcha?.enterprise) {
+			console.warn('⚠️ reCAPTCHA not ready yet');
+			return;
+		}
 
-    // get fresh token from Google
-    const token = await window.grecaptcha.enterprise.execute(
-      PUBLIC_RECAPTCHA_SITE_KEY,
-      { action: "submit" }
-    );
-    console.log("recaptcha token generated:", token);
+		isLoading = true;
 
-    // ensure hidden input is in real DOM and assign value
-    let hidden = formEl.querySelector<HTMLInputElement>(
-      'input[name="g-recaptcha-response"]'
-    );
-    if (!hidden) {
-      hidden = document.createElement("input");
-      hidden.type = "hidden";
-      hidden.name = "g-recaptcha-response";
-      formEl.appendChild(hidden);
-    }
-    hidden.value = token;
+		const token = await window.grecaptcha.enterprise.execute(PUBLIC_RECAPTCHA_SITE_KEY, {
+			action: 'submit'
+		});
 
-    // now post to backend
-    formEl.submit();
-  }
+		// make sure the hidden input exists and set its value
+		let hidden = form.querySelector<HTMLInputElement>('[name="g-recaptcha-response"]');
+		if (!hidden) {
+			hidden = document.createElement('input');
+			hidden.type = 'hidden';
+			hidden.name = 'g-recaptcha-response';
+			form.appendChild(hidden);
+		}
+		hidden.value = token;
+
+		form.action = '?/submit'; // named action on server
+		form.submit();
+	}
 </script>
 
 <section class="flex flex-col items-center dark:bg-current">
@@ -77,7 +79,14 @@
 				{$message}
 			</p>
 		{:else}
-			<form action="?/submit" bind:this={formEl} method="POST" use:enhance onsubmit={handleSubmit} class="flex flex-col space-y-4">
+			<form
+				action="?/submit"
+				bind:this={formEl}
+				method="POST"
+				use:enhance
+				onsubmit={handleSubmit}
+				class="flex flex-col space-y-4"
+			>
 				<!-- Honeypot -->
 				<input
 					type="text"
