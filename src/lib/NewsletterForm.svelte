@@ -27,7 +27,7 @@
 	}
 </script>
 
-<form id="captchaForm" method="POST" action="?/default">
+<form id="captchaForm" method="POST">
 	<input type="hidden" name="g-recaptcha-response" id="recaptcha-field" />
 	<input name="email" type="email" required placeholder="email" />
 	<button type="submit">Send</button>
