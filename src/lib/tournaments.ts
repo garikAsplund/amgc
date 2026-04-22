@@ -3,29 +3,27 @@ export const tournaments = [
 		month: 'May',
 		events: [
 			{
-				date: 'Friday, May 9th',
+				date: 'Friday, May 8th',
 				name: 'High School Golf Tournament'
+			},
+			{
+				date: 'Saturday, May 16th',
+				name: 'Memorial Scramble'
 			}
 		]
 	},
 	{
 		month: 'June',
 		events: [
-			// {
-			//   date: "Saturday, June 8th",
-			//   name: "Ron Layton Memorial Scramble",
-			//   time: "9:00 a.m. shotgun start",
-			//   price: "$75.00 per person",
-			//   details: "Registration Deadline is 6:00 p.m. June 7th",
-			// },
 			{
-				date: 'Saturday, June 14th',
-				name: "Father's Day Memorial Tournament"
+				date: 'Saturday, June 13th',
+				name: "Father's Day Scramble"
 			},
 			{
-				date: 'Saturday, June 21st',
+				date: 'Saturday, June 20th',
 				name: 'AMGC Triple Six Tournament',
-				details: '2 Person team: 6 holes Best Ball, 6 holes Scramble, 6 holes Chapman'
+				details:
+					'2 Person team: 6 holes Best Ball, 6 holes Scramble, 6 holes Chapman'
 			}
 		]
 	},
@@ -33,19 +31,16 @@ export const tournaments = [
 		month: 'July',
 		events: [
 			{
-				date: 'Saturday, July 19th',
-				name: 'Elks Tournament'
+				date: 'Saturday & Sunday, July 18th & 19th',
+				name: 'Elks Golf Tournament'
 			},
 			{
-				date: 'Monday, July 21st',
-				name: 'Eastside Seniors Golf Association Tournament'
+				date: 'Monday, July 20th',
+				name: 'Eastside Seniors Tournament'
 			},
 			{
-				date: 'Friday, July 25th',
-				name: 'Helping Hearts Tournament',
-				time: '9:00 a.m. shotgun start',
-				price: '$85/Person',
-				details: '4-person Scramble'
+				date: 'Friday, July 24th',
+				name: 'Helping Hearts Tournament'
 			}
 		]
 	},
@@ -53,21 +48,16 @@ export const tournaments = [
 		month: 'August',
 		events: [
 			{
-				date: 'Tuesday, August 5th',
-				name: 'Gail Beck Ladies Invitational',
-				time: '9:00 a.m. shotgun start'
+				date: 'Tuesday, August 4th',
+				name: "Gail Beck Ladies' Invitational"
 			},
 			{
-				date: 'Saturday, August 9th',
-				name: 'JAIP Tournament'
+				date: 'Saturday, August 8th',
+				name: 'JAIP (Joseph Eagles) Tournament'
 			},
 			{
-				date: 'Saturday & Sunday, August 16th & 17th',
-				name: 'AMGC Club Championship'
-			},
-			{
-				date: 'Saturday & Sunday, August 30th & 31st',
-				name: 'Rat Race'
+				date: 'Saturday & Sunday, August 15th & 16th',
+				name: 'Club Championship'
 			}
 		]
 	},
@@ -75,8 +65,16 @@ export const tournaments = [
 		month: 'September',
 		events: [
 			{
-				date: 'Saturday, September 13th',
+				date: 'Friday, Saturday & Sunday, September 4th, 5th & 6th',
+				name: 'Rat Race'
+			},
+			{
+				date: 'Saturday, September 12th',
 				name: 'Lions Tournament'
+			},
+			{
+				date: 'Saturday, September 26th',
+				name: 'Grounds Keeper Revenge'
 			}
 		]
 	},
@@ -84,7 +82,7 @@ export const tournaments = [
 		month: 'October',
 		events: [
 			{
-				date: 'Monday, October 13th',
+				date: 'Monday, October 12th',
 				name: 'Firefighters Tournament'
 			}
 		]
