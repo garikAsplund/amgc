@@ -43,10 +43,20 @@
 </script>
 
 <section class="flex flex-col items-center dark:bg-current">
-	<div class="my-8 w-full max-w-md space-y-6 px-4">
+	<div class="my-8 w-full max-w-md space-y-4 px-4">
 		<h2 class="text-center text-lg font-semibold dark:text-gray-100">
 			Sign up for our newsletter!
 		</h2>
+
+		<div class="mt-2 text-center">
+			<a
+				href="/newsletters/may-2026.pdf"
+				target="_blank"
+				class="text-base underline dark:text-gray-100"
+			>
+				Or read our latest newsletter
+			</a>
+		</div>
 
 		{#if $message}
 			<p class="rounded bg-green-700 px-4 py-2 text-center text-sm text-white">
