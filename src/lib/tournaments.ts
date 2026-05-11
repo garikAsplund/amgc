@@ -17,13 +17,12 @@ export const tournaments = [
 		events: [
 			{
 				date: 'Saturday, June 13th',
-				name: "Father's Day Scramble"
+				name: 'AMGC Triple Six Tournament',
+				details: '2 Person team: 6 holes Best Ball, 6 holes Scramble, 6 holes Chapman'
 			},
 			{
 				date: 'Saturday, June 20th',
-				name: 'AMGC Triple Six Tournament',
-				details:
-					'2 Person team: 6 holes Best Ball, 6 holes Scramble, 6 holes Chapman'
+				name: "Father's Day Scramble"
 			}
 		]
 	},
