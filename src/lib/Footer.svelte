@@ -90,9 +90,10 @@
 						</span>
 					</div>
 					<div class="pl-8 pt-4 text-center text-sm">
-						<p>Apr-May: 9 a.m. - 6 p.m.</p>
-						<p>Jun-Aug: 7 a.m. - 7 p.m.</p>
-						<p>Sep-Oct: 8 a.m. - 6 p.m.</p>
+						<p>April: 9 a.m. - 5 p.m.</p>
+						<p>May: 9 a.m. - 6 p.m.</p>
+						<p>June-September: 7 a.m. - 6 p.m.</p>
+						<p>October: 9 a.m. - 5 p.m.</p>
 					</div>
 				</div>
 			</div>
