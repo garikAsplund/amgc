@@ -74,13 +74,13 @@
 			label: 'Range Balls',
 			alt: 'Family',
 			type: 'toggle',
-			fee: 206
+			fee: 257.5
 		},
 		{
 			label: 'Range Balls',
 			alt: 'Individual',
 			type: 'toggle',
-			fee: 155
+			fee: 206
 		},
 		{
 			label: 'Cart Shed Rental',

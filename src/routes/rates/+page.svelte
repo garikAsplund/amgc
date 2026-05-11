@@ -30,10 +30,10 @@
             <td class="py-2">Cart (9 Holes)</td>
             <td class="text-right">$10 per rider</td>
           </tr>
-          <tr>
+          <!-- <tr>
             <td class="py-2">Hand Cart</td>
             <td class="text-right">$5</td>
-          </tr>
+          </tr> -->
         </tbody>
       </table>
     </div>
@@ -63,10 +63,10 @@
             <td class="py-2">Cart</td>
             <td class="text-right">$15 per rider</td>
           </tr>
-          <tr>
+          <!-- <tr>
             <td class="py-2">Hand Cart</td>
             <td class="text-right">$8</td>
-          </tr>
+          </tr> -->
         </tbody>
       </table>
     </div>
@@ -86,7 +86,7 @@
           </tr>
           <tr>
             <td class="py-2">Range Balls (large bucket)</td>
-            <td class="text-right">$5</td>
+            <td class="text-right">$6</td>
           </tr>
         </tbody>
       </table>
@@ -111,11 +111,11 @@
           </tr>
           <tr class="border-b border-gray-300 dark:border-gray-700">
             <td class="py-2">Unlimited Range Balls</td>
-            <td class="text-right">$150</td>
+            <td class="text-right">$200</td>
           </tr>
           <tr>
             <td class="py-2">Family Unlimited Range Balls</td>
-            <td class="text-right">$200</td>
+            <td class="text-right">$250</td>
           </tr>
         </tbody>
       </table>
