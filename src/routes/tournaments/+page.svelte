@@ -1,5 +1,5 @@
 <script>
-    import { tournaments } from "$lib/tournaments";
+	import { tournaments } from "$lib/tournaments";
 </script>
 
 <section class="w-full h-full p-8">
@@ -34,6 +34,31 @@
 								{#if event.details}
 									<p class="text-neutral-600 dark:text-gray-400 mt-2 text-sm">{event.details}</p>
 								{/if}
+
+								{#if event.flyer || event.registration}
+									<div class="flex gap-4 pt-2 text-sm">
+										{#if event.flyer}
+											<a
+												href={event.flyer}
+												target="_blank"
+												rel="noopener"
+												class="text-blue-600 dark:text-blue-400 hover:underline"
+											>
+												View Flyer
+											</a>
+										{/if}
+										{#if event.registration}
+											<a
+												href={event.registration}
+												target="_blank"
+												rel="noopener"
+												class="text-blue-600 dark:text-blue-400 hover:underline"
+											>
+												Register
+											</a>
+										{/if}
+									</div>
+								{/if}
 							</div>
 						</div>
 					{/each}
@@ -42,4 +67,3 @@
 		{/each}
 	</div>
 </section>
-

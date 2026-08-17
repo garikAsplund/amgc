@@ -65,7 +65,9 @@ export const tournaments = [
 		events: [
 			{
 				date: 'Friday, Saturday & Sunday, September 4th, 5th & 6th',
-				name: 'Rat Race'
+				name: 'High Country Rat Race',
+				flyer: '/rat-race-flyer.pdf',
+				registration: '/rat-race-registration.pdf'
 			},
 			{
 				date: 'Saturday, September 12th',
