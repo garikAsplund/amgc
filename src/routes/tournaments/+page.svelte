@@ -54,7 +54,7 @@
 												rel="noopener"
 												class="text-blue-600 dark:text-blue-400 hover:underline"
 											>
-												Register
+												Registration Form
 											</a>
 										{/if}
 									</div>
