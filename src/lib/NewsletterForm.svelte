@@ -50,7 +50,7 @@
 
 		<div class="mt-2 text-center">
 			<a
-				href="/newsletters/june-2026.pdf"
+				href="/newsletters/august-2026.pdf"
 				target="_blank"
 				class="text-base underline dark:text-gray-100"
 			>
