@@ -18,9 +18,9 @@
 	];
 
 	const staff: BoardMember[] = [
-		{ position: 'Golf Course Superintendent', name: 'Greg Oveson' },
+		{ position: 'Golf Course Superintendent', name: 'JD Hagen' },
 		{ position: 'Secretary', name: 'Beth Hough' },
-		{ position: 'Clubhouse Manager/Head Golf Professional', name: 'Scott Marcum' }
+		{ position: 'Clubhouse Manager/Head Golf Professional', name: 'Sean Christensen' }
 	];
 </script>
 
